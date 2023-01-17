@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const UniversitySchema = mongoose.Schema({
     universityID :
@@ -24,4 +24,5 @@ const UniversitySchema = mongoose.Schema({
 },
     { Timestamps: true }
 )
-module.exports = mongoose.model("University", UniversitySchema) 
+const University = mongoose.model("University", UniversitySchema) 
+export default University;

@@ -1,7 +1,4 @@
-const Department = require("../Models/Department");
-const {
-  verifyToken
-} = require("./verifyToken");
+import Department from "../models/Department";
 const mongoose = require("mongoose");
 const router = require("express").Router();
 

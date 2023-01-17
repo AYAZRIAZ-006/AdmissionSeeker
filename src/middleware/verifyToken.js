@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const universities = require("../Models/UniversitySchema");
+const universities = require("../models/UniversitySchema");
 
 
 ///////////// verify token  //////////////
