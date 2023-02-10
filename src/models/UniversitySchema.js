@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
-const UniversitySchema = mongoose.Schema({
-    universityID :
+import { ApiError } from "../utils/ApiError.js";
+
+const Schema = mongoose.Schema({
+    universityId :
      {type : String , required : true , unique:true},
     universityName:
         { type: String, required: true },
@@ -23,6 +26,31 @@ const UniversitySchema = mongoose.Schema({
         { type: String, required: true },
 },
     { Timestamps: true }
-)
-const University = mongoose.model("University", UniversitySchema) 
+);
+
+Schema.methods.bcryptComparePassword = async function (candidatePassword) {
+    try {
+        return await bcrypt.compare(candidatePassword, this.password);
+    } catch (error) {
+        throw new ApiError("Invalid Details", 500, "Password isn't matching", true);
+    }
+};
+
+Schema.statics.sanitize = function () {
+    const { password, createdAt, updatedAt, __v, ...rest } = this.toObject();
+    return rest;
+};
+
+Schema.pre("save", async function (next) {
+    try {
+        if (this.isModified("password")) {
+            console.log("password is modified");
+            this.password = await bcrypt.hash(this.password, 10);
+        }
+        next();
+    } catch (error) {
+        throw new ApiError("Invalid Details", 500, "Password saving failed", true);
+    }
+});
+const University = mongoose.model("University", Schema) 
 export default University;
