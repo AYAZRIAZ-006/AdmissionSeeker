@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.0.3",
@@ -13,5 +14,23 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
     "xss-clean": "^0.1.1"
-  }
+  },
+  "name": "admissionseeker",
+  "description": "This website help students finding their desired institution according to their merits",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:local": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AYAZRIAZ-006/AdmissionSeeker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AYAZRIAZ-006/AdmissionSeeker/issues"
+  },
+  "homepage": "https://github.com/AYAZRIAZ-006/AdmissionSeeker#readme"
 }
