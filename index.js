@@ -1,5 +1,6 @@
 // const mongoose = require("mongoose")
 import mongoose from "mongoose";
+import errorHandler from "./src/utils/Errorhandler.js";
 import app from "./src/middleware/routeMiddlewares.js";
 import AppRoutes from "./src/routes/index.js"
 // const dotenv = require("dotenv")
@@ -22,6 +23,23 @@ mongoose.connect(process.env.mongoURL,{useNewUrlParser: true,
     .then(() => { console.log("DBConnection Successfull") })
     .catch((err) => { console.log(err) })
 
+        // error handler
+        app.use((err, req, res, next) => {
+            console.log( `Handeling error: ${err?.message}`);
+            if (!errorHandler.isTrustedError(err)) {
+                next(err);
+            }
+            // errorHandler.handleError(err);
+            console.log( `returing: ${err?.message}`);
+            return res.status(err?.httpCode ?? 500).json({
+                name: err.name,
+                status: err?.httpCode ?? 500,
+                success: false,
+                error: true,
+                message: err?.message,
+            });
+        });
+    
 
 app.listen(process.env.port || 5000, () => {
     console.log("Backend Server is running")

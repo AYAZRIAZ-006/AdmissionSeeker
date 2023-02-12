@@ -6,10 +6,10 @@ const DepartmentSchema = mongoose.Schema(
     dep_Name: { type: String, required: true },
     deciplineType: { type: Array , required :true },
     level : {type : String ,
-         enum : ['Bachelor', 'Master', 'Phd' ,'M.phil','Diploma'],
+         enum : ['bachelor', 'master', 'Phd' ,'m.phil','diploma'],
           required : true},
     semester: { type: Number, required : true },
-    applyMerit: { type: Number },
+    applyMerit: { type: Number, required : true },
     isAdmissionOpen: { type: Boolean, required : true },
     openingDate : {type : String, required :true},
     closingDate : {type : String, required :true},
@@ -17,7 +17,7 @@ const DepartmentSchema = mongoose.Schema(
     universityId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "universitySchema",
+      ref: "university",
     },
   },
   { Timestamps: true }
