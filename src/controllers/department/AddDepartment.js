@@ -3,7 +3,6 @@ import Department from "../../models/Department.js";
 import { ApiError } from "../../utils/ApiError.js";
 import sendSuccessResponse from "../../utils/sendSuccessResponse.js";
 import CheckIfAllRequiredFieldsArePresent from "../../utils/checkAllRequiredsField.js";
-import unique from "../../utils/uniqueUniversity.js";
 import uniqueDepartment from "../../utils/uniqueDepartment.js";
 const arrayOfRequiredFields = ["dep_Name", "dep_Id", "deciplineType", "level", "semester", "applyMerit", "isAdmissionOpen", "openingDate", "closingDate", "fee"];
 
@@ -19,8 +18,11 @@ const AddDepartment = async (req, res) => {
         }
         //   let {openingDate, closingDate } = req.body;
         const Query = { $and: [{ universityId :id },{ dep_Id } ] };
+        console.log("query", Query);
         const departments = await Department.find(Query).select("dep_Id");
         const currentUserDetails = { universityId:id,  dep_Id};
+        console.log(departments);
+        
         const isUnique = uniqueDepartment(departments, currentUserDetails);
 
         if (isUnique !== true) {
@@ -32,7 +34,7 @@ const AddDepartment = async (req, res) => {
             throw new ApiError("Db Error", 400, "Department not created ", true);
         }
         await newDepartment.save();
-        return sendSuccessResponse(res, 200, true, "Department Add successfully. ", null, newDepartment);
+        return sendSuccessResponse(res, 200, true, "Department Add successfully. ", null, newDepartment); 
     } catch (error) {
         res.status(404).json(error);
     }
