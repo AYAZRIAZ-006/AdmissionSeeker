@@ -4,25 +4,21 @@ import { ApiError } from "../../utils/ApiError.js";
 import sendSuccessResponse from "../../utils/sendSuccessResponse.js";
 import { EMAIL_REGEX } from "../../constants/regex.js";
 import unique from "../../utils/uniqueUniversity.js";
-const arrayOfRequiredFields = ["universityName", "universityID", "email", "campusID", "password", "confirmPassword", "city", "province", "sector"];
+const arrayOfRequiredFields = ["universityName", "universityId", "email", "campusID", "password", "confirmPassword", "city", "province", "sector"];
 
 const SignUp = async (req, res, next) => {
     try {
         const AllArray = [];
-        const { universityID, universityName, email, city, campusID, province, sector, password, confirmPassword } = req.body;
+        const { universityId, universityName, email, city, campusID, province, sector, password, confirmPassword } = req.body;
 
         const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
         if (Object.keys(errors).length > 0) {
             return res.status(400).json({ status: false, message: `Please fill out the required fields : ${Object.keys(errors)} ` });
-            // throw new ApiError("Invalid Details", 400, `Please fill out the required fields : ${Object.keys(errors)} `, true);
         }
         if (!email.match(EMAIL_REGEX)) {
             AllArray.push("Enter the valid email");
         }
-
-        // throw error response if password strength is weak or pass not match with confirm pass
         if (AllArray.length > 0) {
-            // throw new ApiError("Invalid Details", 400, `Please check out error : ${AllArray}`, true);
             return res.status(400).json({ status: false, message: `errors : ${AllArray} ` });
         }
         const Query = { $and: [{ email }, { campusID }] };
