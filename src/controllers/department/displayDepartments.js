@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Department from "../../models/Department.js";
 import { ApiError } from "../../utils/ApiError.js";
 import sendSuccessResponse from "../../utils/sendSuccessResponse.js";
