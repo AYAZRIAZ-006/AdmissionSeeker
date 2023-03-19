@@ -2,18 +2,21 @@ import { ApiError } from "./ApiError.js";
 import Department from "../models/Department.js"
 import sendSuccessResponse from "./sendSuccessResponse.js";
 import CheckIfAllRequiredFieldsArePresent from "./checkAllRequiredsField.js";
+import bodyParser from "body-parser";
+import  express  from "express";
+const app = express()
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 const arrayOfRequiredFields = ["dep_Name", "deciplineType", "level", "applyMerit"];
 
 
 const showDepartments = async (req, res) => {
     try {
-        // const data = {
-        //     dep_Name : "Computer Science",
-        //     Merit : Number(70.3),
-        //     deciplineType : "IT",
-        // }
-    //    const Merit = Number(70.3);
+    console.log("fron", req.body);
     const { dep_Name , applyMerit , deciplineType} = req.body;
     const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
     console.log("err",errors);

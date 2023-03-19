@@ -3,12 +3,20 @@ import mongoose from "mongoose";
 import errorHandler from "./src/utils/Errorhandler.js";
 import app from "./src/middleware/routeMiddlewares.js";
 import AppRoutes from "./src/routes/index.js"
+import bodyParser from "body-parser";
+import express from "express";
 // const dotenv = require("dotenv")
 import dotenv from "dotenv"
 // const app = express()
 dotenv.config()
 mongoose.set('strictQuery', true);
+// parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: false }))
 
+// // parse application/json
+// app.use(bodyParser.json())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // const universityRoute = require("./routes/university");
 // const authRoute = require("./src/routes/auth")
