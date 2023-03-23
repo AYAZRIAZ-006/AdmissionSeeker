@@ -4,12 +4,12 @@ import { ApiError } from "../../utils/ApiError.js";
 import sendSuccessResponse from "../../utils/sendSuccessResponse.js";
 import { EMAIL_REGEX } from "../../constants/regex.js";
 import unique from "../../utils/uniqueUniversity.js";
-const arrayOfRequiredFields = ["universityName", "universityId", "email", "campusID", "password", "confirmPassword", "city", "province", "sector"];
+const arrayOfRequiredFields = ["universityName", "email", "campusID", "password", "confirmPassword", "city", "province", "sector"];
 
 const SignUp = async (req, res, next) => {
     try {
         const AllArray = [];
-        const { universityId, universityName, email, city, campusID, province, sector, password, confirmPassword } = req.body;
+        const { universityName, email, city, campusID, province, sector, password, confirmPassword } = req.body;
 
         const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
         if (Object.keys(errors).length > 0) {

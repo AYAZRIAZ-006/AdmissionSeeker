@@ -5,6 +5,9 @@ import App from './App';
 // import Navbar from './components/Navbar';
 import { BrowserRouter } from "react-router-dom";
 // import reportWebVitals from './reportWebVitals';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import "../node_modules/react-bootstrap/dist/react-bootstrap";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

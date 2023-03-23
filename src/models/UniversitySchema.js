@@ -4,8 +4,8 @@ import bcrypt from "bcrypt";
 import { ApiError } from "../utils/ApiError.js";
 
 const university = mongoose.Schema({
-    universityId :
-     {type : String , required : true , unique:true},
+    // universityId :
+    //  {type : String , required : true , unique:true},
     universityName:
         { type: String, required: true },
     email:

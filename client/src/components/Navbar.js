@@ -1,105 +1,30 @@
-// import React from "react";
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
-// function Header(){
-//     return (
-//     <header> 
-//     <h1>AdmissionSeeker</h1>
-//     <button>Home</button>
-//      </header>
-//      )
-// }
-
-// export default Header;
-
-import React, { useState } from "react";
-import "./navbar.css";
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaYoutubeSquare,
-  FaUserGraduate,
-} from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
-
-import { NavLink } from "react-router-dom";
-
-const Navbar = () => {
-  const [showMediaIcons, setShowMediaIcons] = useState(false);
+function NavBar() {
   return (
-    <>
-      <nav className="main-nav">
-        {/* 1st logo part  */}
-        <div className="logo">
-          <h2>
-          <FaUserGraduate />
-            <span>T</span>hapa
-            <span>T</span>echnical
-          </h2>
-        </div>
-
-        {/* 2nd menu part  */}
-        <div
-          className={
-            showMediaIcons ? "menu-link mobile-menu-link" : "menu-link"
-          }>
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">about</NavLink>
-            </li>
-            <li>
-              <NavLink to="/service">services</NavLink>
-            </li>
-            <li>
-              <NavLink to="/contact">contact</NavLink>
-            </li>
-          </ul>
-        </div>
-
-        {/* 3rd social media links */}
-        <div className="social-media">
-          <ul className="social-media-desktop">
-            <li>
-              <a
-                href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
-                target="_thapa">
-                <FaFacebookSquare className="facebook" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.instagram.com/thapatechnical/"
-                target="_thapa">
-                <FaInstagramSquare className="instagram" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
-                target="_thapa">
-                <FaYoutubeSquare className="youtube" />
-              </a>
-            </li>
-          </ul>
-
-          {/* hamburget menu start  */}
-          <div className="hamburger-menu">
-            <a href="/" onClick={() => setShowMediaIcons(!showMediaIcons)}>
-              <GiHamburgerMenu />
-            </a>
-          </div>
-        </div>
-      </nav>
-
-      {/* hero section  */}
-      {/* <section className="hero-section">
-        <p>Welcome to </p>
-        <h1>Thapa Technical</h1>
-      </section> */}
-    </>
+    <Navbar bg="info" expand="lg">
+      <Container fluid>
+        <Navbar.Brand href="/">AdmissionSeeker</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '100px' }}
+            navbarScroll
+          >
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/contact">contact us</Nav.Link>
+          </Nav>
+            <Button variant="outline-success">SingUp</Button>
+            <Button variant="outline-success">SignIn</Button>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
-};
+}
 
-export default Navbar;
+export default NavBar;
