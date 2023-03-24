@@ -11,7 +11,7 @@ const SignIn = async (req, res, next) => {
         const { email, password } = req.body;
         const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
         if (Object.keys(errors).length > 0) {
-            return res.status(400).json({ status: false, message: `Please fill out the required fields : ${Object.keys(errors)} ` });
+            return res.status(400).json({ status: 400, message: `Please fill out the required fields : ${Object.keys(errors)} ` });
         }
         const university = await University.findOne({ email: email.toLowerCase() })
         if (!university) {

@@ -8,7 +8,10 @@ const unique = (university, matchWith) => {
             errors.email = "Email already exists";
         }
         if (university.campusID === matchWith.campusID) {
-            errors.phoneNumber = "campusID already exists";
+            errors.campusID = "campusID already exists";
+        }
+        if (university.universityID === matchWith.universityID) {
+            errors.universityID = "universityID already exists";
         }
         return false;
     });
