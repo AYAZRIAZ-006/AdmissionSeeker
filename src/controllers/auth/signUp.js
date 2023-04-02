@@ -18,8 +18,12 @@ const SignUp = async (req, res, next) => {
         if (!email.match(EMAIL_REGEX)) {
             AllArray.push("Enter the valid email");
         }
+        if (password !== confirmPassword) {
+            AllArray.push("password and confirm password does not match");
+        }
         if (AllArray.length > 0) {
-            return res.status(400).json({ status: 400, message: `errors : ${AllArray} ` });
+            // return res.status(400).json({ status: 400, message: `errors : ${AllArray} ` });
+            throw new ApiError("Invalid details", 400, `${AllArray} `, true);
         }
         const Query = { $and: [{ email }, { campusID }] };
         const university = await University.find(Query).select("_id email campusID universityID");
@@ -28,7 +32,8 @@ const SignUp = async (req, res, next) => {
 
         if (isUnique !== true) {
             // return res.status(400).json(isUnique);
-            return res.status(400).json({ status: 400, message: isUnique });
+            // return res.status(400).json({ status: 400, message: isUnique });
+            throw new ApiError("Invalid Details", 400, `email or campusId already exist `, true);
         }
         const newUniversity = new University(req.body);
         if (!newUniversity) {
