@@ -10,6 +10,6 @@ router.post("/Add",authMiddleware(University), AddDepartment);
 router.put("/:_id",authMiddleware(University), updateDepartment);
 router.delete("/:_id",authMiddleware(University), deleteDepartment);
 router.get("/show",authMiddleware(University), displayDepartments);
-router.get("/conditionalShow", showDepartments);
+router.post("/conditionalShow", showDepartments);
 
 export default router;

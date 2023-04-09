@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { ApiError } from "../utils/ApiError.js";
 
 const university = mongoose.Schema({
-    universityId :
+    universityID :
      {type : String , required : true , unique:true},
     universityName:
         { type: String, required: true },
@@ -21,9 +21,9 @@ const university = mongoose.Schema({
     city:
         { type: String, required: true },
     province:
-        { type: String,enum :['Punjab', ' Khyber Pakhtunkhwa', 'sindh', ' Balochistan', 'Islamabad'] , required: true },
+        { type: String,enum :["punjab", "kpk", "sindh", "balochistan", "fedral"] , required: true },
     sector:
-        { type: String, required: true },
+        { type: String, enum :["private", "public", "semi"] , required: true },
 },
     { Timestamps: true }
 );
