@@ -36,6 +36,12 @@ const Login = forwardRef((props, ref) => {
                 setResults(res.data.results);
                 console.log(res.data.results);
                 setOpenSuccess(true);
+                localStorage.setItem("login", JSON.stringify(
+                    {
+                        login: true,
+                        store: res.data.results.accessToken
+                    }
+                ))
                 alert("You are login sucessfully");
                 navigate("/contact");
                 setOpenUpper(false);
