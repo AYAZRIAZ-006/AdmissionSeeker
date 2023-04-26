@@ -6,6 +6,7 @@ const authMiddleware = (model) => {
     const authHandler = async (req, res, next) => {
         // get bearer token from header
         try {
+            console.log(req.headers.authorization)
             const token = req.headers.authorization;
             if (!token) {
                 throw new ApiError("Access denied.", 401, "Access denied. No token provided.");

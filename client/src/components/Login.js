@@ -1,14 +1,16 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle, useContext } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link, Modal, Alert } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import BasicPopover from './popUp';
-import { useNavigate } from 'react-router-dom';
+// import { UserContext } from '../pages/home';
+import { UserContext } from './userContext';
 
 const Login = forwardRef((props, ref) => {
     const [password, setPassword] = React.useState('');
     const [email, setEmail] = React.useState('');
-    const [result, setResults] = React.useState(null);
+    const { userData, setUserData } = useContext(UserContext);
     let [error, setError] = React.useState("");
     const [open, setOpen] = React.useState(false);
     const [openSuccess, setOpenSuccess] = React.useState(false);
@@ -33,8 +35,9 @@ const Login = forwardRef((props, ref) => {
             password,
         }).then((res) => {
             if (res.status === 200) {
-                setResults(res.data.results);
-                console.log(res.data.results);
+                setUserData(res.data.results.accessToken);
+                console.log("context", res.data)
+                // console.log(res.data.results);
                 setOpenSuccess(true);
                 localStorage.setItem("login", JSON.stringify(
                     {
@@ -43,7 +46,7 @@ const Login = forwardRef((props, ref) => {
                     }
                 ))
                 alert("You are login sucessfully");
-                navigate("/contact");
+                navigate("/loginUser");
                 setOpenUpper(false);
 
             } else {
@@ -80,7 +83,7 @@ const Login = forwardRef((props, ref) => {
                     <Grid align='center'>
                         <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
                         <h2>Sign In</h2>
-                        {openSuccess && <Alert>Welcome {result.university.universityName}</Alert>}
+                        {openSuccess && <Alert>Welcome</Alert>}
                         {open && <Alert severity="error">{error}</Alert>}
                         <Button type='button' onClick={handleError}><BasicPopover error={error} open={open} /></Button>
 
@@ -88,15 +91,6 @@ const Login = forwardRef((props, ref) => {
                     <form onSubmit={handleSubmit}>
                         <TextField label='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter email' fullWidth required />
                         <TextField label='Password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter password' type='password' fullWidth required />
-                        {/* <FormControlLabel
-                    control={
-                    <Checkbox
-                        name="checkedB"
-                        color="primary"
-                    />
-                    }
-                    label="Remember me"
-                 /> */}
                         <Button color="warning" variant="text" style={btnstyle} onClick={onCloseModal}>Cancel</Button>
                         <Button type='submit' color='primary' variant="contained" style={btnstyle} >Sign in</Button>
                         <Typography >

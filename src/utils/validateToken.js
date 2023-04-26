@@ -14,7 +14,6 @@ function validateToken(token) {
     const bearer = token.split(" ");
 
     const [, bearerToken] = bearer;
-
     const decoded = jwt.verify(bearerToken, process.env.secretketjwt);
     if (!decoded.id) {
         return {

@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
 
-function dataSection(props) {
+function DataSection(props) {
     console.log("pro",props);
   return (
     <Table bordered hover style={{ textAlign:"center"}}>
@@ -16,4 +16,4 @@ function dataSection(props) {
   );
 }
 
-export default dataSection;
+export default DataSection;
