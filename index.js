@@ -5,6 +5,7 @@ import app from "./src/middleware/routeMiddlewares.js";
 import AppRoutes from "./src/routes/index.js"
 import bodyParser from "body-parser";
 import express from "express";
+import University from "./src/models/UniversitySchema.js";
 // const dotenv = require("dotenv")
 import dotenv from "dotenv"
 // const app = express()
@@ -26,7 +27,7 @@ app.use("/api/v1/", AppRoutes);
 // app.use("/api/university", universityRoute)
 // app.use("/api/auth", authRoute)
 
-mongoose.connect(process.env.mongoURL,{useNewUrlParser: true,
+mongoose.connect(process.env.MONGODB_URL,{useNewUrlParser: true,
     useUnifiedTopology: true,})
     .then(() => { console.log("DBConnection Successfull") })
     .catch((err) => { console.log(err) })
@@ -48,7 +49,9 @@ mongoose.connect(process.env.mongoURL,{useNewUrlParser: true,
             });
         });
     
-
+        // University.collection.dropIndex({ universityID: 1 })
+        // .then(() => console.log('Index dropped'))
+        // .catch((err) => console.error(err));
 app.listen(process.env.port || 5000, () => {
     console.log("Backend Server is running")
 })

@@ -96,9 +96,9 @@ function MiddleSection() {
         <DataSection dep_Name={"department Name"} _id={"_id"} applyMerit={"applyMerit"} universityId={"universityId"} />
 
         {result.map((element) => {
-          const { dep_Name, applyMerit, universityId, _id } = element;
+          const { dep_Name, applyMerit, fee, _id } = element;
           return <div key={_id} >
-            <DataSection dep_Name={dep_Name} _id={_id} applyMerit={applyMerit} universityId={universityId} />
+            <DataSection dep_Name={dep_Name} _id={_id} applyMerit={applyMerit} fee={fee} />
           </div>
         })}
       </div>

@@ -9,7 +9,7 @@ function DataSection(props) {
           <td style={{width:"30%"}}>{props.dep_Name}</td>
           <td style={{width:"30%"}}>{props._id}</td>
           <td style={{width:"10%"}}>{props.applyMerit}</td>
-          <td style={{width:"30%"}}>{props.universityId}</td>
+          <td style={{width:"30%"}}>{props.fee}</td>
         </tr>
       </tbody>
     </Table>

@@ -1,6 +1,9 @@
 import React, { forwardRef, useImperativeHandle, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// import { store } from '../store/store';
+import { setUser } from '../store/store';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link, Modal, Alert } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import BasicPopover from './popUp';
@@ -8,6 +11,7 @@ import BasicPopover from './popUp';
 import { UserContext } from './userContext';
 
 const Login = forwardRef((props, ref) => {
+    const dispatch = useDispatch();
     const [password, setPassword] = React.useState('');
     const [email, setEmail] = React.useState('');
     const { userData, setUserData } = useContext(UserContext);
@@ -36,6 +40,7 @@ const Login = forwardRef((props, ref) => {
         }).then((res) => {
             if (res.status === 200) {
                 setUserData(res.data.results.accessToken);
+                dispatch(setUser(res.data.results));
                 console.log("context", res.data)
                 // console.log(res.data.results);
                 setOpenSuccess(true);
