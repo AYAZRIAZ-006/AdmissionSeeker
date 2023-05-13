@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
 import About from "./pages/about.js";
 import Contact from "./pages/contact";
 import Home from "./pages/home";
@@ -8,16 +7,11 @@ import Home from "./pages/home";
 
 const App = () => {
   return (
-    <BrowserRouter>
-  
-    {/* <div style={{ height: "170px", backgroundImage: `url(${url})` }}> */}
     <Routes>
       <Route path="/" element={ <Home />} />
       <Route path="/contact" element={ <Contact />} />
       <Route path="/about" element={ <About />} />
     </Routes>
-    {/* </div> */}
-    </BrowserRouter>
   );
 };
 

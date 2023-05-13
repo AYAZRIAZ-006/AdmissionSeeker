@@ -9,7 +9,7 @@ const Login = forwardRef((props, ref) => {
     const [password, setPassword] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [result, setResults] = React.useState(null);
-    let [error, setError] = React.useState("");
+    const [error, setError] = React.useState("");
     const [open, setOpen] = React.useState(false);
     const [openSuccess, setOpenSuccess] = React.useState(false);
     const navigate = useNavigate();
