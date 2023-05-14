@@ -26,29 +26,35 @@ app.use("/api/v1/", AppRoutes);
 // app.use("/api/university", universityRoute)
 // app.use("/api/auth", authRoute)
 
-mongoose.connect(process.env.mongoURL,{useNewUrlParser: true,
-    useUnifiedTopology: true,})
+mongoose.connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
     .then(() => { console.log("DBConnection Successfull") })
     .catch((err) => { console.log(err) })
 
-        // error handler
-        app.use((err, req, res, next) => {
-            console.log( `Handeling error: ${err?.message}`);
-            if (!errorHandler.isTrustedError(err)) {
-                next(err);
-            }
-            // errorHandler.handleError(err);
-            console.log( `returing: ${err?.message}`);
-            return res.status(err?.httpCode ?? 500).json({
-                name: err.name,
-                status: err?.httpCode ?? 500,
-                success: false,
-                error: true,
-                message: err?.message,
-            });
-        });
-    
+// error handler
+app.use((err, req, res, next) => {
+    console.log(`Handeling error: ${err?.message}`);
+    if (!errorHandler.isTrustedError(err)) {
+        next(err);
+    }
+    // errorHandler.handleError(err);
+    console.log(`returing: ${err?.message}`);
+    return res.status(err?.httpCode ?? 500).json({
+        name: err.name,
+        status: err?.httpCode ?? 500,
+        success: false,
+        error: true,
+        message: err?.message,
+    });
+});
+
+app.get('/', (req, res)=> [
+res.status(200).send('<h1>Hello World</h1>')
+])
+
 
 app.listen(process.env.port || 5000, () => {
-    console.log("Backend Server is running")
+    console.log(`Backend Server is running ${process.env.port}`)
 })

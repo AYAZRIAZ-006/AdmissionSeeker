@@ -9,6 +9,13 @@ const arrayOfRequiredFields = ["email", "password"];
 const SignIn = async (req, res, next) => {
     try {
         const { email, password } = req.body;
+
+        return res.status(201).json({
+            user: {
+                email,
+                authToken: "thisisdummyAuthToken"
+            },
+        })
         const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
         if (Object.keys(errors).length > 0) {
             return res.status(400).json({ status: 400, message: `Please fill out the required fields : ${Object.keys(errors)} ` });

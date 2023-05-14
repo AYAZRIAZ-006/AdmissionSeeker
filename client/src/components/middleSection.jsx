@@ -41,7 +41,7 @@ function MiddleSection() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <Table hover style={{ width: "70%", backgroundColor: "lightcyan", margin: "15px" }}>
+        <Table hover style={{backgroundColor: "lightcyan" }}>
           <thead >
             <tr>
               <td style={{width:"20%"}}>Discipline type</td>

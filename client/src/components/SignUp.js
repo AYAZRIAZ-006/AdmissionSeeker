@@ -1,15 +1,13 @@
 import axios from 'axios';
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { Paper, Avatar, Grid, Typography, TextField, Button, Modal } from '@mui/material';
+import { Paper, Avatar, Grid, Typography, TextField, Button, Modal, Box } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import { InputLabel, Select, MenuItem, FormControl, Alert } from '@mui/material';
 import BasicPopover from './popUp';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = forwardRef((props, ref) => {
-    const paperStyle = { padding: '30px 20px', width: 350, margin: "20px auto" }
-    const headerStyle = { margin: 0 }
-    const avatarStyle = { backgroundColor: '#1bbd7e' }
+
     const [sector, setSector] = React.useState('');
     const [universityName, setUniversityName] = React.useState('');
     const [universityID, setUniversityID] = React.useState('');
@@ -20,7 +18,7 @@ const Signup = forwardRef((props, ref) => {
     const [password, setPassword] = React.useState('');
     const [confirmPassword, setConfirmPassword] = React.useState('');
     const [result, setResults] = React.useState([]);
-    let [error, setError] = React.useState("");
+    const [error, setError] = React.useState("");
     const [open, setOpen] = React.useState(false);
     const [openSuccess, setOpenSuccess] = React.useState(false);
     const navigate = useNavigate();
@@ -75,64 +73,77 @@ const Signup = forwardRef((props, ref) => {
         }
     })
     return (
-        <Modal open={openUpper} onClose={() => setOpenUpper(false)} >
-            <Grid>
-                <Paper elevation={20} style={paperStyle}>
-                    <Grid align='center'>
-                        <Avatar style={avatarStyle}>
-                            <SchoolIcon />
-                        </Avatar>
-                        <h2 style={headerStyle}>Sign Up</h2>
-                        {openSuccess && <Alert>you are register successfully</Alert>}
-                        {open && <Alert severity="error">{error}</Alert>}
-                        <Typography variant='caption' gutterBottom>Please fill this form to register your university!</Typography>
-                        <Button onClick={handleError}><BasicPopover error={error} open={open} /></Button>
-                    </Grid>
-                    <form onSubmit={handleSubmit}>
-                        <TextField size='small' fullWidth value={universityID} onChange={(e) => setUniversityID(e.target.value)} label='university ID' placeholder="Enter your university ID" required />
-                        <TextField fullWidth value={universityName} size="small" onChange={(e) => setUniversityName(e.target.value)} label='university Name' placeholder="Enter your university name" required />
-                        <TextField fullWidth value={email} size="small" onChange={(e) => setEmail(e.target.value)} label='email' placeholder="Enter your email" required />
-                        <TextField fullWidth value={city} size="small" onChange={(e) => setCity(e.target.value)} label='city' placeholder="Enter your city" required />
-                        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                            <InputLabel id="demo-select-small" >Province</InputLabel>
-                            <Select
-                                labelId="demo-select-small"
-                                id="demo-select-small"
-                                value={province}
-                                label="Province"
-                                required
-                                onChange={(e) => setProvince(e.target.value)} >
-                                <MenuItem value="punjab">Punjab</MenuItem>
-                                <MenuItem value="sindh">Sindh</MenuItem>
-                                <MenuItem value="kpk">KPK</MenuItem>
-                                <MenuItem value="blochistan">Blochistan</MenuItem>
-                                <MenuItem value="fedral">Fedral</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                            <InputLabel id="demo-select-small">sector</InputLabel>
-                            <Select
-                                labelId="demo-select-small"
-                                id="demo-select-small"
-                                value={sector}
-                                label="Sector"
-                                required
-                                onChange={(e) => setSector(e.target.value)} >
-                                <MenuItem value="private">Private</MenuItem>
-                                <MenuItem value="public">Public</MenuItem>
-                                <MenuItem value="semi">Semi Government</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <TextField fullWidth value={campusID} size="small" onChange={(e) => setCampusId(e.target.value)} label='Campus Id' placeholder="Enter your phone number" required />
-                        <TextField fullWidth value={password} size="small" onChange={(e) => setPassword(e.target.value)} label='Password' placeholder="Enter your password" required />
-                        <TextField fullWidth value={confirmPassword} size="small" onChange={(e) => setConfirmPassword(e.target.value)} label='Confirm Password' placeholder="Confirm your password" required />
-                        <Button color="warning" variant="text" onClick={onCloseModal}>Cancel</Button>
+        <Modal
+            open={openUpper}
+            onClose={() => setOpenUpper(false)}
+            maxWidth="lg">
+            <Paper style={Style.paperStyle}>
+                <Grid align='center'>
+                    <Avatar style={Style.avatarStyle}>
+                        <SchoolIcon />
+                    </Avatar>
+                    <h2 style={Style.headerStyle}>Sign Up</h2>
+                    {openSuccess && <Alert>you are register successfully</Alert>}
+                    {open && <Alert severity="error">{error}</Alert>}
+                    <Typography variant='caption' gutterBottom>Please fill this form to register your university!</Typography>
+                    <Button onClick={handleError}><BasicPopover error={error} open={open} /></Button>
+                </Grid>
+                <form onSubmit={handleSubmit} style={Style.form}>
+                    <TextField size='small' fullWidth value={universityID} onChange={(e) => setUniversityID(e.target.value)} label='university ID' placeholder="Enter your university ID" required />
+                    <TextField fullWidth value={universityName} size="small" onChange={(e) => setUniversityName(e.target.value)} label='university Name' placeholder="Enter your university name" required />
+                    <TextField fullWidth value={email} size="small" onChange={(e) => setEmail(e.target.value)} label='email' placeholder="Enter your email" required />
+                    <TextField fullWidth value={city} size="small" onChange={(e) => setCity(e.target.value)} label='city' placeholder="Enter your city" required />
+                    <FormControl sx={{ minWidth: 120 }} size="small">
+                        <InputLabel id="demo-select-small" >Province</InputLabel>
+                        <Select
+                            labelId="demo-select-small"
+                            id="demo-select-small"
+                            value={province}
+                            label="Province"
+                            required
+                            onChange={(e) => setProvince(e.target.value)} >
+                            <MenuItem value="punjab">Punjab</MenuItem>
+                            <MenuItem value="sindh">Sindh</MenuItem>
+                            <MenuItem value="kpk">KPK</MenuItem>
+                            <MenuItem value="blochistan">Blochistan</MenuItem>
+                            <MenuItem value="fedral">Fedral</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <FormControl sx={{ minWidth: 120 }} size="small">
+                        <InputLabel id="demo-select-small">sector</InputLabel>
+                        <Select
+                            labelId="demo-select-small"
+                            id="demo-select-small"
+                            value={sector}
+                            label="Sector"
+                            required
+                            onChange={(e) => setSector(e.target.value)} >
+                            <MenuItem value="private">Private</MenuItem>
+                            <MenuItem value="public">Public</MenuItem>
+                            <MenuItem value="semi">Semi Government</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <TextField fullWidth value={campusID} size="small" onChange={(e) => setCampusId(e.target.value)} label='Campus Id' placeholder="Enter your phone number" required />
+                    <TextField fullWidth value={password} size="small" onChange={(e) => setPassword(e.target.value)} label='Password' placeholder="Enter your password" required />
+                    <TextField fullWidth value={confirmPassword} size="small" onChange={(e) => setConfirmPassword(e.target.value)} label='Confirm Password' placeholder="Confirm your password" required />
+                    <Box component="span" sx={{ pt: 2 }}>
+                        <Button color="warning" variant="contained" onClick={onCloseModal} style={Style.buttonCancel} >Cancel</Button>
                         <Button type='submit' variant='contained' color='primary'>Sign up</Button>
-                    </form>
-                </Paper>
-            </Grid>
+                    </Box>
+                </form>
+            </Paper>
         </Modal>
     )
 })
+
+const Style = {
+    paperStyle: {
+        padding: '30px 20px', width: "40%", margin: "20px auto"
+    },
+    headerStyle: { margin: 0 },
+    avatarStyle: { backgroundColor: '#1bbd7e' },
+    form:{display: "flex", flexDirection: "column", gap: "10px" },
+    buttonCancel: { marginRight: "10px" }
+}
 
 export default Signup;

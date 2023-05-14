@@ -3,7 +3,7 @@ import axios from "../../config/axios";
 
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     try {
-        const { data } = await axios.post('/auth/login', user, {
+        const { data } = await axios.post('/auth/signin', user, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -106,8 +106,7 @@ const authSlice = createSlice({
             state.user = action.payload.user;
             state.isLoggedIn = true;
             //set user to localStorege
-            const { token, user } = action.payload;
-            localStorage.setItem('authToken', token)
+            const { user } = action.payload;
             localStorage.setItem('user', JSON.stringify(user));
         },
         [login.rejected]: (state, action) => {
