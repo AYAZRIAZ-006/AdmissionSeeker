@@ -8,6 +8,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
                 'Content-Type': 'application/json'
             }
         });
+        console.log({data})
         return data;
     } catch (err) {
         if (err.response && err.response.data) {
@@ -77,7 +78,7 @@ const authSlice = createSlice({
     name: "auth",
     initialState: {
         isLoggedIn: false,
-        user: {},
+        university: {},
         error: {
             status: '',
             success: false,
@@ -103,11 +104,11 @@ const authSlice = createSlice({
         },
         [login.fulfilled]: (state, action) => {
             state.loading = false;
-            state.user = action.payload.user;
+            state.university = action.payload.university;
             state.isLoggedIn = true;
             //set user to localStorege
-            const { user } = action.payload;
-            localStorage.setItem('user', JSON.stringify(user));
+            const { university } = action.payload;
+            localStorage.setItem('user', JSON.stringify(university));
         },
         [login.rejected]: (state, action) => {
             const { error, status } = action.payload;
