@@ -99,7 +99,7 @@ function NavBar() {
     dispatch(Logout());
   }
   return (
-    <Navbar bg="info" expand="lg">
+    <Navbar bg="info" expand="lg" style={{padding:"10px 20px 10px 20px"}}>
       <Container fluid>
         <Navbar.Brand href="/">AdmissionSeeker</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

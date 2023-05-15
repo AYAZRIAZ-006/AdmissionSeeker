@@ -66,7 +66,7 @@ function MiddleSection() {
 
   // const classes = useStyles();
   return (
-    <div>
+    <div style={{background:"white",padding:"10px 20px"}}>
       {/* <div className="tableForSelect">
         <Table hover style={{ backgroundColor: "lightcyan" }}>
           <thead >
@@ -118,10 +118,19 @@ function MiddleSection() {
 
 
 
-      <Box>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+      <Box sx={{
+        // width: 300,
+        // height: 300,
+        padding:"20px 0px",
+        backgroundColor: 'white',
+        // '&:hover': {
+        //   backgroundColor: 'white',
+        //   opacity: [0.9, 0.8, 0.7],
+        // },
+      }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 3 }}
           >
-          <Grid item xs={2} lg={2.5}>
+          <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
               <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
               <Select
@@ -140,7 +149,7 @@ function MiddleSection() {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={2} lg={2.5}>
+          <Grid item xs={12} sm={6}  md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
               <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
               <Select
@@ -159,7 +168,7 @@ function MiddleSection() {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={2} lg={2.5}>
+          <Grid item xs={12} sm={6}  md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
               <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
               <Select
@@ -178,7 +187,7 @@ function MiddleSection() {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={2} lg={2.5}>
+          <Grid item xs={12} sm={6}  md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }}  p={0} size="small" fullWidth={true}>
               <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
               <Select
@@ -197,7 +206,7 @@ function MiddleSection() {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={6} md={2} lg={2}  style={{justifyContent: 'left',display:"flex",alignItems:"center"}}>
             <div className="submitBtn">
               <Button type='submit' color='primary' variant="contained" size={"medium"}>Submit</Button>
             </div>
@@ -205,10 +214,10 @@ function MiddleSection() {
         </Grid>
       </Box>
 
-      <div style={{ width: "70%", background: "#FFF2CC", color: "#FC2947", margin: "15px" }}>
+      <div style={{width:"70%"}}>
         {/* <BasicTable dep_Name={"department Name"} _id={"_id"} applyMerit={"applyMerit"} universityId={"universityId"} /> */}
-        <TableContainer component={Paper}>
-          <Table className={"table"} aria-label="simple table">
+        <TableContainer component={Paper} size="small" width={"50%"}>
+          <Table className={"table"} aria-label="simple table" size={"small"} stickyHeader={true} >
             <TableHead>
               <TableRow>
                 <TableCell>Dessert (100g serving)</TableCell>
@@ -240,94 +249,6 @@ function MiddleSection() {
           </div>
         })} */}
       </div>
-
-      {/* <Box>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          direction="row"
-          justifyContent="left"
-          alignItems="center">
-          <Grid item xs={3}>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-              <FormHelperText>With label + helper text</FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-              <FormHelperText>With label + helper text</FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-              <FormHelperText>With label + helper text</FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-              <FormHelperText>With label + helper text</FormHelperText>
-            </FormControl>
-          </Grid>
-        </Grid>
-      </Box> */}
 
     </div>
   );
