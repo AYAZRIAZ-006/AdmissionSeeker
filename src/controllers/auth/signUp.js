@@ -4,12 +4,12 @@ import { ApiError } from "../../utils/ApiError.js";
 import sendSuccessResponse from "../../utils/sendSuccessResponse.js";
 import { EMAIL_REGEX } from "../../constants/regex.js";
 import unique from "../../utils/uniqueUniversity.js";
-const arrayOfRequiredFields = ["universityName","universityID", "email", "campusID", "password", "confirmPassword", "city", "province", "sector"];
+const arrayOfRequiredFields = ["universityName","website", "email", "campusID", "password", "confirmPassword", "city", "province", "sector"];
 
 const SignUp = async (req, res, next) => {
     try {
         const AllArray = [];
-        const { universityName, universityID,email, city, campusID, province, sector, password, confirmPassword } = req.body;
+        const { universityName, website,email, city, campusID, province, sector, password, confirmPassword } = req.body;
         console.log(req.body);
         const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
         if (Object.keys(errors).length > 0) {
@@ -26,8 +26,8 @@ const SignUp = async (req, res, next) => {
             throw new ApiError("Invalid details", 400, `${AllArray} `, true);
         }
         const Query = { $and: [{ email }, { campusID }] };
-        const university = await University.find(Query).select("_id email campusID universityID");
-        const currentUserDetails = { email: email.toLowerCase(), campusID, universityID };
+        const university = await University.find(Query).select("_id email campusID");
+        const currentUserDetails = { email: email.toLowerCase(), campusID };
         const isUnique = unique(university, currentUserDetails);
 
         if (isUnique !== true) {

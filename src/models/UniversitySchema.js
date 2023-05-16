@@ -4,8 +4,6 @@ import bcrypt from "bcrypt";
 import { ApiError } from "../utils/ApiError.js";
 
 const university = mongoose.Schema({
-    universityID :
-     {type : String , required : true , unique:true},
     universityName:
         { type: String, required: true },
     email:
@@ -24,6 +22,15 @@ const university = mongoose.Schema({
         { type: String,enum :["punjab", "kpk", "sindh", "balochistan", "fedral"] , required: true },
     sector:
         { type: String, enum :["private", "public", "semi"] , required: true },
+        website: {
+            type: String,
+            validate: {
+              validator: function (v) {
+                return /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w.-]*)*\/?$/.test(v);
+              },
+              message: props => `${props.value} is not a valid URL!`
+            }
+          }
 },
     { Timestamps: true }
 );

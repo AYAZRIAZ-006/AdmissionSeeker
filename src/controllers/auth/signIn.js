@@ -23,7 +23,11 @@ const SignIn = async (req, res, next) => {
         }
         const accessToken = jwt.sign({ id: university._id }, process.env.secretketjwt)
         // const { Password, ...others } = university._doc
-        return sendSuccessResponse(res, 200, true, "Login successfully. ", null, { university, accessToken });
+        const userData={
+            university, 
+            authToken:accessToken 
+        }
+        return sendSuccessResponse(res, 200, true, "Login successfully. ", null, userData);
 
     } catch (error) {
         console.log(error)
