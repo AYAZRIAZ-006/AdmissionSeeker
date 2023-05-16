@@ -10,7 +10,7 @@ const Signup = forwardRef((props, ref) => {
 
     const [sector, setSector] = React.useState('');
     const [universityName, setUniversityName] = React.useState('');
-    const [universityID, setUniversityID] = React.useState('');
+    const [website, setWebsite] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [campusID, setCampusId] = React.useState('');
     const [city, setCity] = React.useState('');
@@ -35,7 +35,7 @@ const Signup = forwardRef((props, ref) => {
         axios.post("http://localhost:5000/api/v1/auth/signup", {
             universityName,
             email,
-            universityID,
+            website,
             password,
             confirmPassword,
             campusID,
@@ -49,7 +49,7 @@ const Signup = forwardRef((props, ref) => {
                     setResults(res.data.results);
                     setOpenSuccess(true);
                     alert("You are Register sucessfully");
-                    navigate("/contact");
+                    navigate("/");
                     setOpenUpper(false);
                 } else {
                     setError((res.response.data).toString());
@@ -89,7 +89,6 @@ const Signup = forwardRef((props, ref) => {
                     <Button onClick={handleError}><BasicPopover error={error} open={open} /></Button>
                 </Grid>
                 <form onSubmit={handleSubmit} style={Style.form}>
-                    <TextField size='small' fullWidth value={universityID} onChange={(e) => setUniversityID(e.target.value)} label='university ID' placeholder="Enter your university ID" required />
                     <TextField fullWidth value={universityName} size="small" onChange={(e) => setUniversityName(e.target.value)} label='university Name' placeholder="Enter your university name" required />
                     <TextField fullWidth value={email} size="small" onChange={(e) => setEmail(e.target.value)} label='email' placeholder="Enter your email" required />
                     <TextField fullWidth value={city} size="small" onChange={(e) => setCity(e.target.value)} label='city' placeholder="Enter your city" required />
@@ -124,6 +123,7 @@ const Signup = forwardRef((props, ref) => {
                         </Select>
                     </FormControl>
                     <TextField fullWidth value={campusID} size="small" onChange={(e) => setCampusId(e.target.value)} label='Campus Id' placeholder="Enter your phone number" required />
+                    <TextField size='small' fullWidth value={website} onChange={(e) => setWebsite(e.target.value)} label='website' placeholder="https://www.website.edu.pk/" required />
                     <TextField fullWidth value={password} size="small" onChange={(e) => setPassword(e.target.value)} label='Password' placeholder="Enter your password" required />
                     <TextField fullWidth value={confirmPassword} size="small" onChange={(e) => setConfirmPassword(e.target.value)} label='Confirm Password' placeholder="Confirm your password" required />
                     <Box component="span" sx={{ pt: 2 }}>
