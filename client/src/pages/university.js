@@ -1,5 +1,4 @@
 import NavBar from "../components/Navbar";
-import { useSelector } from "react-redux";
 import axios from "../config/axios";
 import { React, useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';

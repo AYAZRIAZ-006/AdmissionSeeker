@@ -32,6 +32,7 @@ function MiddleSection() {
   const [deciplineType, setDeciplineType] = useState('');
   const [applyMerit, setapplyMerit] = useState('');
   const [result, setResults] = useState([]);
+  const [resultAll, setAllResults] = useState([]);
   let data = [];
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,7 +45,8 @@ function MiddleSection() {
     console.log("data", data);
     if (data.data.status === 200) {
       // console.log("done", data.data.results);
-      setResults(data.data.results);
+      setResults(data.data.results.a);
+      setAllResults(data.data.results.b);
     } else {
       setResults({
         dep_Name: "not found",
@@ -185,6 +187,21 @@ function MiddleSection() {
             </TableHead>
             <TableBody>
               {result.map((row) => (
+                <TableRow key={row._id}>
+                  <TableCell>
+                    <Link href={row.universityId.website} target="_blank" rel="noopener">
+                      {row.universityId.universityName} </Link>
+                  </TableCell>
+                  <TableCell align="right">{row.dep_Name}</TableCell>
+                  <TableCell align="right">{row.applyMerit}</TableCell>
+                  <TableCell align="right">{row.level}</TableCell>
+                  <TableCell align="right">{row.closingDate}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+            <h6>here is all universities where you can apply on other departments</h6>
+            <TableBody>
+              {resultAll.map((row) => (
                 <TableRow key={row._id}>
                   <TableCell>
                     <Link href={row.universityId.website} target="_blank" rel="noopener">
