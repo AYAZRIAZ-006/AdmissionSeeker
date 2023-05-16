@@ -17,7 +17,7 @@ const DepartmentSchema = mongoose.Schema(
     universityId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "university",
+      ref: "University",
     },
   },
   { Timestamps: true }

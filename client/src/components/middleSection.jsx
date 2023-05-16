@@ -2,7 +2,7 @@ import axios from "axios"
 import { React, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import BasicTable from "./table";
-import { Box, Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Paper, Select, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Button, FormControl, Link, FormHelperText, TextField, Grid, InputLabel, MenuItem, Paper, Select, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 // import dotenv from "dotenv"
 
 
@@ -32,21 +32,16 @@ function MiddleSection() {
   const [deciplineType, setDeciplineType] = useState('');
   const [applyMerit, setapplyMerit] = useState('');
   const [result, setResults] = useState([]);
-
-  const [age, setAge] = useState('');
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
   let data = [];
   const handleSubmit = async (event) => {
     event.preventDefault();
     data = await axios.post("http://localhost:5000/api/v1/Department/ConditionalShow", {
       dep_Name: department,
-      deciplineType: "Computer Science",
+      deciplineType,
       applyMerit,
       level,
     })
+    console.log("data", data);
     if (data.data.status === 200) {
       // console.log("done", data.data.results);
       setResults(data.data.results);
@@ -66,62 +61,23 @@ function MiddleSection() {
 
   // const classes = useStyles();
   return (
-    <div style={{background:"white",padding:"10px 20px"}}>
-      {/* <div className="tableForSelect">
-        <Table hover style={{ backgroundColor: "lightcyan" }}>
-          <thead >
-            <tr>
-              <td style={{ width: "20%" }}>Discipline type</td>
-              <td style={{ width: "20%" }}>level</td>
-              <td style={{ width: "20%" }}>Cources</td>
-              <td style={{ width: "10%" }}>merit</td>
-            </tr>
-          </thead>
-          <tr>
-            <td style={{ width: "20%" }}>
-              <select style={{ width: "100%" }} value={deciplineType} onChange={(e) => setDeciplineType(e.target.value)}>
-                <option name="Select Type" value="SelectType">Select Type</option>
-                <option name="Social Science" value="SocialScience">Social Science</option>
-                <option name="Computer Science & IT" value="ComputerScience&IT">Computer Science & IT </option>
-                <option name="Computer Science" value="Computer Science">Computer Science </option>
-                <option name="Engineering" value="Engineering">Engineering</option>
-                <option name="Medical Science" value="MedicalScience">Medical Science</option>
-              </select>
-            </td>
-            <td style={{ width: "20%" }}>
-              <select style={{ width: "100%" }} value={level} onChange={(e) => setlevel(e.target.value)}>
-                <option name="Select Level" value="SelectLevel">Select Level</option>
-                <option name="Bachelor" value="bachelor">Bachelor </option>
-                <option name="Master" value="master">Master </option>
-                <option name="Phd" value="phd">Phd</option>
-                <option name="M Phil" value="mphil">M Phil</option>
-              </select>
-            </td>
-            <td style={{ width: "20%" }}>
-              <select style={{ width: "100%" }} value={department} onChange={(e) => setDepartment(e.target.value)}>
-                <option name="Select Cources" value="select cources">Select Cources</option>
-                <option name="Computer Science" value="computer science">Computer Science </option>
-                <option name="Computer Engineering" value="computer engineering">Computer Engineering </option>
-                <option name="Mechanical Engineering" value="mechanical engineering">Mechanical Engineering</option>
-                <option name="Electrical Engineering" value="electrical engineering">Electrical Engineering</option>
-
-              </select>
-            </td>
-            <td style={{ width: "10%" }}>
-              <input style={{ width: "100%" }} type="number" placeholder="Enter Merit" value={applyMerit} onChange={(e) => setapplyMerit(e.target.value)} />
-            </td>
-          </tr>
-        </Table>
-      </div> */}
-
-
-
-
-
+    <div style={{ background: "white", padding: "10px 20px" }}>
+    <div>
+      <h1>Well Come to Admission Seeker</h1>
+      {/* <p><strong>
+      Welcome to our innovative website designed to simplify the process of applying to universities.
+       Our platform provides a smart algorithm that matches students with universities based on their academic qualifications,
+        making it easier than ever to find the right institution to continue your education. In addition,
+         universities can register on our website and manage their departments, admission requirements, 
+         and other details, making it a one-stop-shop for both students and institutions.
+          Join us today and take the first step towards your academic success!
+      </strong>
+      </p> */}
+    </div>
       <Box sx={{
         // width: 300,
         // height: 300,
-        padding:"20px 0px",
+        padding: "20px 0px",
         backgroundColor: 'white',
         // '&:hover': {
         //   backgroundColor: 'white',
@@ -129,114 +85,115 @@ function MiddleSection() {
         // },
       }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 3 }}
-          >
+        >
           <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+              <InputLabel required id="demo-simple-select-helper-label">Discipline type</InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
+                value={deciplineType}
+                label="Discipline type"
+                onChange={(e) => setDeciplineType(e.target.value)}
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>Select Type</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value={"Computer Science"}>Computer Science</MenuItem>
+                <MenuItem value={"Engineering"}>Engineering</MenuItem>
+                <MenuItem value={"Medical Science"}>Medical Science</MenuItem>
+                <MenuItem value={"Computer Science & IT"}>Computer Science & IT </MenuItem>
+                <MenuItem value={"Social Science"}>Social Science</MenuItem>
+                <MenuItem value={"Power Engineering"}>Power Engineering</MenuItem>
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}  md={2.5} lg={2.5}>
+          <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+              <InputLabel required id="demo-simple-select-helper-label">level</InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
+                value={level}
+                label="Level"
+                onChange={(e) => setlevel(e.target.value)}
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>Select level</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value={"bachelor"}>Bachelor</MenuItem>
+                <MenuItem value={"master"}>Master</MenuItem>
+                <MenuItem value={"phd"}>PHD</MenuItem>
+                <MenuItem value={"mphil"}>M Phil</MenuItem>
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}  md={2.5} lg={2.5}>
+          <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+              <InputLabel required id="demo-simple-select-helper-label">Cources</InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
+                value={department}
+                label="Cources"
+                onChange={(e) => setDepartment(e.target.value)}
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>Select Type</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value={"Computer Science"}>Computer Science</MenuItem>
+                <MenuItem value={"Electrical Engineering"}>Electrical Engineering</MenuItem>
+                <MenuItem value={"Medical Science"}>Medical Science</MenuItem>
+                <MenuItem value={"Computer Science & IT"}>Computer Science & IT </MenuItem>
+                <MenuItem value={"Civil Engineering"}>Civil Engineering</MenuItem>
+                <MenuItem value={"BBA"}>BBA</MenuItem>
+                <MenuItem value={"Mechanical Engineering"}>Mechanical Engineering</MenuItem>
+                <MenuItem value={"Environmental Sciences"}>Environmental Sciences</MenuItem>
+                <MenuItem value={"Chemistry"}>Chemistry</MenuItem>
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}  md={2.5} lg={2.5}>
-            <FormControl sx={{ m: 1, minWidth: 120 }}  p={0} size="small" fullWidth={true}>
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
+          <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
+            <TextField
+              required
+              id="outlined-required"
+              label="Merit"
+              Value={applyMerit}
+              onChange={(e) => setapplyMerit(e.target.value)}
+            />
           </Grid>
-          <Grid item xs={12} sm={6} md={2} lg={2}  style={{justifyContent: 'left',display:"flex",alignItems:"center"}}>
+          <Grid item xs={12} sm={6} md={2} lg={2} style={{ justifyContent: 'left', display: "flex", alignItems: "center" }}>
             <div className="submitBtn">
-              <Button type='submit' color='primary' variant="contained" size={"medium"}>Submit</Button>
+              <Button type='submit' color='primary' onClick={handleSubmit} variant="contained" size={"medium"}>Submit</Button>
             </div>
           </Grid>
         </Grid>
       </Box>
 
-      <div style={{width:"70%"}}>
+      <div style={{ width: "70%" }}>
         {/* <BasicTable dep_Name={"department Name"} _id={"_id"} applyMerit={"applyMerit"} universityId={"universityId"} /> */}
         <TableContainer component={Paper} size="small" width={"50%"}>
           <Table className={"table"} aria-label="simple table" size={"small"} stickyHeader={true} >
             <TableHead>
               <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                <TableCell>University</TableCell>
+                <TableCell align="right">department</TableCell>
+                <TableCell align="right">applyMerit</TableCell>
+                <TableCell align="right">Level</TableCell>
+                <TableCell align="right">closingDate</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
+              {result.map((row) => (
+                <TableRow key={row._id}>
+                  <TableCell>
+                    <Link href={row.universityId.website} target="_blank" rel="noopener">
+                      {row.universityId.universityName} </Link>
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="right">{row.dep_Name}</TableCell>
+                  <TableCell align="right">{row.applyMerit}</TableCell>
+                  <TableCell align="right">{row.level}</TableCell>
+                  <TableCell align="right">{row.closingDate}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
