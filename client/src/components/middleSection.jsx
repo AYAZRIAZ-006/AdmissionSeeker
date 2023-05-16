@@ -157,6 +157,9 @@ function MiddleSection() {
           </Grid>
           <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <TextField
+            size="small"
+            sx={{ m: 1, minWidth: 120 }} 
+            fullWidth={true}
               required
               id="outlined-required"
               label="Merit"
