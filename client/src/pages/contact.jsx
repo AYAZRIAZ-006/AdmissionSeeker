@@ -7,9 +7,12 @@ import ContactForm from "../components/contactForm";
 function Contact(){
     return (
         <>
+        <div style={{height:"750px"}}>
+
         <NavBar />
     <h1>welcome to contact page</h1>
     <ContactForm />
+        </div>
     <Footer />
         </>
      )

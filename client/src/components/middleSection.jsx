@@ -63,7 +63,7 @@ function MiddleSection() {
 
   // const classes = useStyles();
   return (
-    <div style={{ background: "white", padding: "10px 20px" }}>
+    <div style={{ background: "white", padding: "10px 20px", height:"90%" }}>
     <div>
       <h1>Well Come to Admission Seeker</h1>
       {/* <p><strong>
@@ -81,6 +81,7 @@ function MiddleSection() {
         // height: 300,
         padding: "20px 0px",
         backgroundColor: 'white',
+        
         // '&:hover': {
         //   backgroundColor: 'white',
         //   opacity: [0.9, 0.8, 0.7],

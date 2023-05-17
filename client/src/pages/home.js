@@ -5,8 +5,11 @@ import Footer from "../components/footer";
 function Home() {
     return (
         <>
+        <div style={{height:"750px"}}>
+
             <NavBar />
             <MiddleSection/>
+        </div>
             <Footer />
         </>
     )
