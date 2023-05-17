@@ -1,9 +1,8 @@
-import { ApiError } from "./ApiError.js";
 import Department from "../models/Department.js"
 import sendSuccessResponse from "./sendSuccessResponse.js";
 import CheckIfAllRequiredFieldsArePresent from "./checkAllRequiredsField.js";
 import bodyParser from "body-parser";
-import  express  from "express";
+import express from "express";
 const app = express()
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -16,33 +15,36 @@ const arrayOfRequiredFields = ["dep_Name", "deciplineType", "level", "applyMerit
 
 const showDepartments = async (req, res, next) => {
     try {
-    console.log("fron", req.body);
-    const { dep_Name , applyMerit ,level, deciplineType} = req.body;
-    const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
-    if (Object.keys(errors).length > 0) {
-        return res.status(400).json({ status: false, message: `Please fill out the required fields : ${Object.keys(errors)} ` });
-    }
-        const query = {$and : [{dep_Name : dep_Name},{level:level}, {applyMerit : {$lt: applyMerit}} /*,{isAdmissionOpen : false},{deciplineType : deciplineType} */ ]}
+        console.log("fron", req.body);
+        const { dep_Name, applyMerit, level, deciplineType } = req.body;
+        const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
+        if (Object.keys(errors).length > 0) {
+            return res.status(400).json({ status: false, message: `Please fill out the required fields : ${Object.keys(errors)} ` });
+        }
+        const query = { $and: [{ dep_Name: dep_Name }, { level: level }, { applyMerit: { $lt: applyMerit } }, { isAdmissionOpen: true }/*,{deciplineType : deciplineType} */] }
+        const query2 = { $and: [{ level: level }, { applyMerit: { $lt: applyMerit } }, { isAdmissionOpen: true },/*{deciplineType : deciplineType} */] }
         // const departments = await Department.find({$and : [{dep_Name :"electrical Engineering"},{applyMerit:{$gt: 40} } ]})
         const departments = await Department.find(query).select("universityId dep_Name level closingDate applyMerit isAdmissionOpen").populate("universityId");
-        console.log(departments)
-        // if(departments.length < 1) throw new ApiError("error",404, "No data found", true);
-        if(departments.length < 1) {
+        const departmentsAll = await Department.find(query2).select("universityId dep_Name level closingDate applyMerit isAdmissionOpen").populate("universityId");
+        // console.log("A departments",departments)
+        const uniqueDepartments = departmentsAll.filter(department => !departments.some(d => d._id.equals(department._id)));
+        if (departments.length < 1) {
             const departments = [{
                 _id: "no data",
                 dep_Name: 'no data',
                 level: 'no data found',
                 applyMerit: 0.00,
-                closingDate:"0/0/0000",
+                closingDate: "0/0/0000",
                 isAdmissionOpen: false,
                 universityId: {
                     universityName: "No date found",
-                    website:"https://www.google.com/"
+                    website: "https://www.google.com/"
                 }
-              }]
-        return sendSuccessResponse(res, 200, true, "No Departments. ", null, departments);
+            }]
+            if( departmentsAll.length < 1) return sendSuccessResponse(res, 200, true, "No Departments. ", null, { a: departments, b: departments });
+            return sendSuccessResponse(res, 200, true, "No Departments. ", null, { a: departments, b: departmentsAll });
         }
-        return sendSuccessResponse(res, 200, true, "Your Departments. ", null, departments);
+        return sendSuccessResponse(res, 200, true, "Your Departments. ", null, { a: departments, b: uniqueDepartments });
 
     } catch (error) {
         // res.status(404).json(error);

@@ -29,22 +29,25 @@ const rows = [
 function MiddleSection() {
   const [department, setDepartment] = useState('');
   const [level, setlevel] = useState('');
-  const [deciplineType, setDeciplineType] = useState('');
+  var [deciplineType, setDeciplineType] = useState('');
   const [applyMerit, setapplyMerit] = useState('');
   const [result, setResults] = useState([]);
+  const [resultAll, setAllResults] = useState([]);
+
   let data = [];
   const handleSubmit = async (event) => {
     event.preventDefault();
     data = await axios.post("http://localhost:5000/api/v1/Department/ConditionalShow", {
       dep_Name: department,
-      deciplineType,
+      deciplineType:"Engineering",
       applyMerit,
       level,
     })
     console.log("data", data);
     if (data.data.status === 200) {
       // console.log("done", data.data.results);
-      setResults(data.data.results);
+      setResults(data.data.results.a);
+      setAllResults(data.data.results.b);
     } else {
       setResults({
         dep_Name: "not found",
@@ -61,9 +64,10 @@ function MiddleSection() {
 
   // const classes = useStyles();
   return (
-    <div style={{ background: "white", padding: "10px 20px" }}>
+    <div style={{ background: "white", padding: "10px 20px", height:"90%" }}>
     <div>
       <h1>Well Come to Admission Seeker</h1>
+      <h6>if you select <strong>Master, PHD or M-phil</strong>Enter your CGPA</h6>
       {/* <p><strong>
       Welcome to our innovative website designed to simplify the process of applying to universities.
        Our platform provides a smart algorithm that matches students with universities based on their academic qualifications,
@@ -79,6 +83,7 @@ function MiddleSection() {
         // height: 300,
         padding: "20px 0px",
         backgroundColor: 'white',
+        
         // '&:hover': {
         //   backgroundColor: 'white',
         //   opacity: [0.9, 0.8, 0.7],
@@ -86,7 +91,7 @@ function MiddleSection() {
       }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 3 }}
         >
-          <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
+          {/* <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
               <InputLabel required id="demo-simple-select-helper-label">Discipline type</InputLabel>
               <Select
@@ -107,7 +112,7 @@ function MiddleSection() {
                 <MenuItem value={"Power Engineering"}>Power Engineering</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
               <InputLabel required id="demo-simple-select-helper-label">level</InputLabel>
@@ -141,7 +146,7 @@ function MiddleSection() {
                 <MenuItem value="">
                   <em>Select Type</em>
                 </MenuItem>
-                <MenuItem value={"Computer Science"}>Computer Science</MenuItem>
+                <MenuItem value={"computer science"}>Computer Science</MenuItem>
                 <MenuItem value={"Electrical Engineering"}>Electrical Engineering</MenuItem>
                 <MenuItem value={"Medical Science"}>Medical Science</MenuItem>
                 <MenuItem value={"Computer Science & IT"}>Computer Science & IT </MenuItem>
@@ -155,6 +160,9 @@ function MiddleSection() {
           </Grid>
           <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <TextField
+            size="small"
+            sx={{ m: 1, minWidth: 120 }} 
+            fullWidth={true}
               required
               id="outlined-required"
               label="Merit"
@@ -185,6 +193,21 @@ function MiddleSection() {
             </TableHead>
             <TableBody>
               {result.map((row) => (
+                <TableRow key={row._id}>
+                  <TableCell>
+                    <Link href={row.universityId.website} target="_blank" rel="noopener">
+                      {row.universityId.universityName} </Link>
+                  </TableCell>
+                  <TableCell align="right">{row.dep_Name}</TableCell>
+                  <TableCell align="right">{row.applyMerit}</TableCell>
+                  <TableCell align="right">{row.level}</TableCell>
+                  <TableCell align="right">{row.closingDate}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+            <h6>here is all universities where you can apply on other departments</h6>
+            <TableBody>
+              {resultAll.map((row) => (
                 <TableRow key={row._id}>
                   <TableCell>
                     <Link href={row.universityId.website} target="_blank" rel="noopener">

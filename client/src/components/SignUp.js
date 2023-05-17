@@ -89,50 +89,81 @@ const Signup = forwardRef((props, ref) => {
                     <Button onClick={handleError}><BasicPopover error={error} open={open} /></Button>
                 </Grid>
                 <form onSubmit={handleSubmit} style={Style.form}>
-                    <TextField fullWidth value={universityName} size="small" onChange={(e) => setUniversityName(e.target.value)} label='university Name' placeholder="Enter your university name" required />
-                    <TextField fullWidth value={email} size="small" onChange={(e) => setEmail(e.target.value)} label='email' placeholder="Enter your email" required />
-                    <TextField fullWidth value={city} size="small" onChange={(e) => setCity(e.target.value)} label='city' placeholder="Enter your city" required />
-                    <FormControl sx={{ minWidth: 120 }} size="small">
-                        <InputLabel id="demo-select-small" >Province</InputLabel>
-                        <Select
-                            labelId="demo-select-small"
-                            id="demo-select-small"
-                            value={province}
-                            label="Province"
-                            required
-                            onChange={(e) => setProvince(e.target.value)} >
-                            <MenuItem value="punjab">Punjab</MenuItem>
-                            <MenuItem value="sindh">Sindh</MenuItem>
-                            <MenuItem value="kpk">KPK</MenuItem>
-                            <MenuItem value="blochistan">Blochistan</MenuItem>
-                            <MenuItem value="fedral">Fedral</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <FormControl sx={{ minWidth: 120 }} size="small">
-                        <InputLabel id="demo-select-small">sector</InputLabel>
-                        <Select
-                            labelId="demo-select-small"
-                            id="demo-select-small"
-                            value={sector}
-                            label="Sector"
-                            required
-                            onChange={(e) => setSector(e.target.value)} >
-                            <MenuItem value="private">Private</MenuItem>
-                            <MenuItem value="public">Public</MenuItem>
-                            <MenuItem value="semi">Semi Government</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <TextField fullWidth value={campusID} size="small" onChange={(e) => setCampusId(e.target.value)} label='Campus Id' placeholder="Enter your phone number" required />
-                    <TextField size='small' fullWidth value={website} onChange={(e) => setWebsite(e.target.value)} label='website' placeholder="https://www.website.edu.pk/" required />
-                    <TextField fullWidth value={password} size="small" onChange={(e) => setPassword(e.target.value)} label='Password' placeholder="Enter your password" required />
-                    <TextField fullWidth value={confirmPassword} size="small" onChange={(e) => setConfirmPassword(e.target.value)} label='Confirm Password' placeholder="Confirm your password" required />
-                    <Box component="span" sx={{ pt: 2 }}>
-                        <Button color="warning" variant="contained" onClick={onCloseModal} style={Style.buttonCancel} >Cancel</Button>
-                        <Button type='submit' variant='contained' color='primary'>Sign up</Button>
-                    </Box>
+
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 3 }}>
+                        <Grid item xs={12} sm={12} md={12} lg={12}>
+                            <TextField fullWidth value={universityName} size="small" onChange={(e) => setUniversityName(e.target.value)} label='university Name' placeholder="Enter your university name" required />
+                        </Grid>
+
+
+
+                        <Grid item xs={12} sm={12} md={12} lg={12}>
+                            <TextField fullWidth value={email} size="small" onChange={(e) => setEmail(e.target.value)} label='email' placeholder="Enter your email" required />
+                        </Grid>
+                        <Grid item xs={6} sm={6} md={6} lg={6}>
+                            <TextField fullWidth value={city} size="small" onChange={(e) => setCity(e.target.value)} label='city' placeholder="Enter your city" required />
+                        </Grid>
+
+                        <Grid item xs={6} sm={6} md={6} lg={6}>
+                            <FormControl fullWidth={true} sx={{ minWidth: 120 }} size="small">
+                                <InputLabel id="demo-select-small" >Province</InputLabel>
+                                <Select
+                                    labelId="demo-select-small"
+                                    id="demo-select-small"
+                                    value={province}
+                                    label="Province"
+                                    required
+                                    onChange={(e) => setProvince(e.target.value)} >
+                                    <MenuItem value="punjab">Punjab</MenuItem>
+                                    <MenuItem value="sindh">Sindh</MenuItem>
+                                    <MenuItem value="kpk">KPK</MenuItem>
+                                    <MenuItem value="blochistan">Blochistan</MenuItem>
+                                    <MenuItem value="fedral">Fedral</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} sm={12} md={12} lg={12}>
+                            <TextField fullWidth value={campusID} size="small" onChange={(e) => setCampusId(e.target.value)} label='Campus Id' placeholder="Enter your phone number" required />
+                        </Grid>
+
+                        <Grid item xs={6} sm={6} md={6} lg={6}>
+                            <FormControl fullWidth={true} sx={{ minWidth: 120 }} size="small">
+                                <InputLabel id="demo-select-small">sector</InputLabel>
+                                <Select
+                                    labelId="demo-select-small"
+                                    id="demo-select-small"
+                                    value={sector}
+                                    label="Sector"
+                                    required
+                                    onChange={(e) => setSector(e.target.value)} >
+                                    <MenuItem value="private">Private</MenuItem>
+                                    <MenuItem value="public">Public</MenuItem>
+                                    <MenuItem value="semi">Semi Government</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        
+                        <Grid item xs={6} sm={6} md={6} lg={6}>
+                            <TextField size='small' fullWidth value={website} onChange={(e) => setWebsite(e.target.value)} label='website' placeholder="https://www.website.edu.pk/" required />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={12} lg={12}>
+                            <TextField fullWidth value={password} size="small" onChange={(e) => setPassword(e.target.value)} label='Password' placeholder="Enter your password" required />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={12} lg={12}>
+                            <TextField fullWidth value={confirmPassword} size="small" onChange={(e) => setConfirmPassword(e.target.value)} label='Confirm Password' placeholder="Confirm your password" required />
+                        </Grid>
+
+                        <Grid item xs={12} sm={12} md={12} lg={12}>
+                            <Box component="span" sx={{ pt: 2 }}>
+                                <Button color="warning" variant="contained" onClick={onCloseModal} style={Style.buttonCancel} >Cancel</Button>
+                                <Button type='submit' variant='contained' color='primary'>Sign up</Button>
+                            </Box>
+                        </Grid>
+                    </Grid>
                 </form>
             </Paper>
-        </Modal>
+        </Modal >
     )
 })
 
@@ -142,7 +173,7 @@ const Style = {
     },
     headerStyle: { margin: 0 },
     avatarStyle: { backgroundColor: '#1bbd7e' },
-    form:{display: "flex", flexDirection: "column", gap: "10px" },
+    form: { display: "flex", flexDirection: "column", gap: "10px" },
     buttonCancel: { marginRight: "10px" }
 }
 

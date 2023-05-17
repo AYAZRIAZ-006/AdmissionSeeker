@@ -22,7 +22,6 @@ const SignUp = async (req, res, next) => {
             AllArray.push("password and confirm password does not match");
         }
         if (AllArray.length > 0) {
-            // return res.status(400).json({ status: 400, message: `errors : ${AllArray} ` });
             throw new ApiError("Invalid details", 400, `${AllArray} `, true);
         }
         const Query = { $and: [{ email }, { campusID }] };
@@ -31,8 +30,6 @@ const SignUp = async (req, res, next) => {
         const isUnique = unique(university, currentUserDetails);
 
         if (isUnique !== true) {
-            // return res.status(400).json(isUnique);
-            // return res.status(400).json({ status: 400, message: isUnique });
             throw new ApiError("Invalid Details", 400, `email or campusId already exist `, true);
         }
         const newUniversity = new University(req.body);
