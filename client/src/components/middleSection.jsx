@@ -29,16 +29,17 @@ const rows = [
 function MiddleSection() {
   const [department, setDepartment] = useState('');
   const [level, setlevel] = useState('');
-  const [deciplineType, setDeciplineType] = useState('');
+  var [deciplineType, setDeciplineType] = useState('');
   const [applyMerit, setapplyMerit] = useState('');
   const [result, setResults] = useState([]);
   const [resultAll, setAllResults] = useState([]);
+
   let data = [];
   const handleSubmit = async (event) => {
     event.preventDefault();
     data = await axios.post("http://localhost:5000/api/v1/Department/ConditionalShow", {
       dep_Name: department,
-      deciplineType,
+      deciplineType:"Engineering",
       applyMerit,
       level,
     })
@@ -89,7 +90,7 @@ function MiddleSection() {
       }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 3 }}
         >
-          <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
+          {/* <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
               <InputLabel required id="demo-simple-select-helper-label">Discipline type</InputLabel>
               <Select
@@ -110,7 +111,7 @@ function MiddleSection() {
                 <MenuItem value={"Power Engineering"}>Power Engineering</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={6} md={2.5} lg={2.5}>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth={true} size="small">
               <InputLabel required id="demo-simple-select-helper-label">level</InputLabel>

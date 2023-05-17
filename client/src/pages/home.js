@@ -5,7 +5,7 @@ import Footer from "../components/footer";
 function Home() {
     return (
         <>
-        <div style={{height:"750px"}}>
+        <div style={{height:"auto"}}>
 
             <NavBar />
             <MiddleSection/>

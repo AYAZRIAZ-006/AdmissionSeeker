@@ -1,8 +1,13 @@
 .footer{
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    width: 100%;
     padding: 1rem 2rem;
-    background: black;
+    background: #43C6DB;
     color: white;
     height: 300px;
+    flex-shrink: 0;
 }
 .top{
     display: flex;
