@@ -6,7 +6,7 @@ const DepartmentSchema = mongoose.Schema(
     dep_Name: { type: String, required: true },
     deciplineType: { type: Array , required :true },
     level : {type : String ,
-         enum : ['bachelor', 'master', 'Phd' ,'m.phil','diploma'],
+         enum : ['bachelor', 'master', 'phd' ,'mphil','diploma'],
           required : true},
     semester: { type: Number, required : true },
     applyMerit: { type: Number, required : true },
