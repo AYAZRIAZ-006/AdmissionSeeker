@@ -25,7 +25,6 @@ app.use("/api/v1/", AppRoutes);
 // app.use (express.json())
 // app.use("/api/university", universityRoute)
 // app.use("/api/auth", authRoute)
-
 mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

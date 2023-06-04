@@ -22,12 +22,14 @@ const showDepartments = async (req, res, next) => {
             return res.status(400).json({ status: false, message: `Please fill out the required fields : ${Object.keys(errors)} ` });
         }
         const query = { $and: [{ dep_Name: dep_Name }, { level: level }, { applyMerit: { $lt: applyMerit } }, { isAdmissionOpen: true }/*,{deciplineType : deciplineType} */] }
-        const query2 = { $and: [{ level: level }, { applyMerit: { $lt: applyMerit } }, { isAdmissionOpen: true },/*{deciplineType : deciplineType} */] }
+        const query2 = { $and: [{ dep_Name: { $ne: dep_Name }},{ level: level }, { applyMerit: { $lt: applyMerit } }, { isAdmissionOpen: true },/*{deciplineType : deciplineType} */] }
         // const departments = await Department.find({$and : [{dep_Name :"electrical Engineering"},{applyMerit:{$gt: 40} } ]})
         const departments = await Department.find(query).select("universityId dep_Name level closingDate applyMerit isAdmissionOpen").populate("universityId");
         const departmentsAll = await Department.find(query2).select("universityId dep_Name level closingDate applyMerit isAdmissionOpen").populate("universityId");
         // console.log("A departments",departments)
-        const uniqueDepartments = departmentsAll.filter(department => !departments.some(d => d._id.equals(department._id)));
+        // console.log("length of all ", departmentsAll.length);
+        // const uniqueDepartments = departmentsAll.filter(department => !departments.some(d => d._id.equals(department._id)));
+        // console.log("length of uniq ", uniqueDepartments.length);
         if (departments.length < 1) {
             const departments = [{
                 _id: "no data",
@@ -44,7 +46,7 @@ const showDepartments = async (req, res, next) => {
             if( departmentsAll.length < 1) return sendSuccessResponse(res, 200, true, "No Departments. ", null, { a: departments, b: departments });
             return sendSuccessResponse(res, 200, true, "No Departments. ", null, { a: departments, b: departmentsAll });
         }
-        return sendSuccessResponse(res, 200, true, "Your Departments. ", null, { a: departments, b: uniqueDepartments });
+        return sendSuccessResponse(res, 200, true, "Your Departments. ", null, { a: departments, b: departmentsAll });
 
     } catch (error) {
         // res.status(404).json(error);

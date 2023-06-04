@@ -36,7 +36,11 @@ function MiddleSection() {
 
   let data = [];
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
+    // if (applyMerit < 1 || applyMerit >100 ) {
+    //   setResults("Merit can not be less then 1 and greater than 100");
+    //   setResults("Merit can not be less then 1 and greater than 100");
+    // }
     data = await axios.post("http://localhost:5000/api/v1/Department/ConditionalShow", {
       dep_Name: department,
       deciplineType:"Engineering",
