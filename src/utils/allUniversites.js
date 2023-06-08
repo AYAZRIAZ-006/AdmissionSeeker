@@ -6,7 +6,7 @@ import sendSuccessResponse from "./sendSuccessResponse.js";
 const allUniversities = async (req, res) => {
     try {
         const universities = await University.find({}).select("universityName email city sector website");
-        console.log(universities)
+        // console.log(universities)
         // if(!universities) throw new ApiError("error",404, "No data found", true);
         if(universities.length < 1) {
             const universities = [{

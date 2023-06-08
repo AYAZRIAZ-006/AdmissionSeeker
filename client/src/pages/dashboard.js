@@ -7,23 +7,16 @@ import { Link, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow 
 // import dotenv from "dotenv"
 
 function Dashboard() {
-    // const {auth}=useSelector(state=>state.auth)
-    const authToken = JSON.parse(localStorage.getItem("login"));
-    console.log("token", authToken);
+    // const { auth }= useSelector(state=>state.auth);
     const [result, setResults] = useState([]);
     useEffect(() => {
-        axios.get("http://localhost:5000/api/v1/department/show", {
-            headers: {
-                Authorization: `Bearer ${authToken.store}`,
-                "Content-Type": "application/json"
-            }
-        })
+        axios.get("http://localhost:5000/api/v1/department/show")
             .then(response => {
                 setResults(response.data.results);
-                console.log("resp", response);
+                console.log("sucess", response);
             })
             .catch(data => {
-                console.log("data", data);
+                console.log("error", data);
                 setResults(data.data.results);
             });
     }, []); // Empty dependency array means it will only run once on component mount

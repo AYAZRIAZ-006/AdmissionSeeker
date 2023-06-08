@@ -30,8 +30,9 @@ function NavBar() {
 
   }
   const LogoutUser=()=>{
-    localStorage.removeItem("user");
+    localStorage.removeItem("university");
     dispatch(Logout());
+    navigate("/");
   }
   return (
     <Navbar bg="info" expand="lg" style={{padding:"10px 20px 10px 20px"}}>

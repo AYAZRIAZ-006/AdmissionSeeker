@@ -1,13 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../../config/axios";
+// import axios from "../../config/axios";
+import axios from "../../config/axios.js"
 
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     try {
+        // console.log("i am in login 1");
         const { data } = await axios.post('/auth/signin', user, {
             headers: {
                 'Content-Type': 'application/json'
             }
         });
+        // console.log("i am in login 2");
         console.log({data})
         return data;
     } catch (err) {
@@ -26,7 +29,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
         }
     }
 });
-export const register = createAsyncThunk('auth/login', async (user, thunkAPI) => {
+export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
     try {
         const { data } = await axios.post('/auth/register', user, {
             headers: {
@@ -103,12 +106,15 @@ const authSlice = createSlice({
             state.loading = true;
         },
         [login.fulfilled]: (state, action) => {
+            // console.log("login sucess", action.payload);
             state.loading = false;
-            state.university = action.payload.university;
+            state.university = action.payload.results.university;
             state.isLoggedIn = true;
             //set user to localStorege
-            const { university } = action.payload;
-            localStorage.setItem('user', JSON.stringify(university));
+            const { authToken, university } = action.payload.results;
+            // console.log("toms", authToken);
+            localStorage.setItem('university', JSON.stringify(university));
+            localStorage.setItem('authToken', JSON.stringify(authToken));
         },
         [login.rejected]: (state, action) => {
             const { error, status } = action.payload;
@@ -122,12 +128,12 @@ const authSlice = createSlice({
         },
         [register.fulfilled]: (state, action) => {
             state.loading = false;
-            state.user = action.payload.user;
+            state.user = action.payload.university;
             state.isLoggedIn = true;
             //set user to localStorege
-            const { token, user } = action.payload;
-            localStorage.setItem('authToken', token);
-            localStorage.setItem('user', JSON.stringify(user));
+            const { university } = action.payload;
+            // localStorage.setItem('authToken', JSON.stringify(token));
+            localStorage.setItem('university', JSON.stringify(university));
         },
         [register.rejected]: (state, action) => {
             const { error, status } = action.payload;

@@ -1,11 +1,13 @@
 import axios from "axios";
-axios.defaults.baseURL = process.env.REACT_APP_URL || "http://localhost:4000/api/v1/";
+axios.defaults.baseURL = process.env.REACT_APP_URL || "http://localhost:5000/api/v1/";
+console.log("url", process.env.REACT_APP_URL);
 axios.interceptors.request.use(
     (config) => {
         console.log("config")
         const token = localStorage.getItem("authToken");
+        console.log("conf ", token);
         if (token) {
-            config.headers["Authorization"] = `Bearer ${token}`;
+            config.headers["authorization"] = `Bearer ${token.replace(/"/g, "")}`;
         }
         return config;
     },
