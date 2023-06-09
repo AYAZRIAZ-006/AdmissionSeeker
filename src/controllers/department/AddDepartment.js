@@ -8,7 +8,7 @@ import trimAndLowerCase from "../../utils/trimAndLowerCase.js";
 const arrayOfRequiredFields = ["dep_Name", "dep_Id", "deciplineType", "level", "semester", "applyMerit", "isAdmissionOpen", "openingDate", "closingDate", "fee"];
 
 
-const AddDepartment = async (req, res) => {
+const AddDepartment = async (req, res, next) => {
     try {
         const { id } = req.university;
         const { dep_Id, dep_Name, deciplineType  } = req.body;
@@ -39,7 +39,7 @@ const AddDepartment = async (req, res) => {
         await newDepartment.save();
         return sendSuccessResponse(res, 200, true, "Department Add successfully. ", null, newDepartment); 
     } catch (error) {
-        res.status(404).json(error);
+        next(error);
     }
 };
 
