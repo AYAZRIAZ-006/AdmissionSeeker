@@ -6,17 +6,20 @@ import sendSuccessResponse from "../../utils/sendSuccessResponse.js";
 const displayDepartments = async (req, res, next) => {
     try {
         const { id } = req.university;
-        console.log("9n dop");
-        const departments = await Department.find({universityId : id}).select("universityId dep_Name level closingDate applyMerit isAdmissionOpen");
-        console.log(departments)
+        console.log("dep recieved success");
+        const departments = await Department.find({universityId : id}).select("universityId dep_Name fee semester level openingDate closingDate applyMerit isAdmissionOpen");
+        // console.log(departments)
         // if(!departments) throw new ApiError("error",404, "No data found", true);
         if (departments.length < 1) {
             const departments = [{
                 _id: "no data",
                 dep_Name: 'no data',
                 level: 'no data found',
+                semester: 'no data found',
+                fee: 'no data found',
                 applyMerit: 0.00,
                 closingDate: "0/0/0000",
+                openingDate: "0/0/0000",
                 isAdmissionOpen: false,
                 universityId: {
                     universityName: "No date found",

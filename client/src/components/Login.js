@@ -38,32 +38,7 @@ const Login = forwardRef((props, ref) => {
             password,
         }))
         closeModal();
-        navigate("/dashboard")
-        // axios.post("http://localhost:5000/api/v1/auth/signin", {
-        //     email,
-        //     password,
-        // }).then((res) => {
-        //     if (res.status === 200) {
-        //         setResults(res.data.results);
-        //         console.log(res.data.results);
-        //         setOpenSuccess(true);
-        //         alert("You are login sucessfully");
-        //         navigate("/contact");
-        //         setOpenUpper(false);
-
-        //     } else {
-        //         // setError((res.response.data).toString());
-        //         console.log("aya");
-        //         // setOpen(true);
-        //         // throw (res.response.data.message).toString();
-        //     }
-        // })
-        //     .catch(err => {
-        //         console.log("err", err);
-        //         setError((err.response.data.message || err.message).toString());
-        //         setOpen(true)
-
-        //     })
+        navigate("/dashboard");
 
     };
 

@@ -11,7 +11,7 @@ import { Logout } from '../redux/slices/auth';
 
 function NavBar() {
 
-  const { isLoggedIn, user } = useSelector(state => state.auth)
+  const { isLoggedIn, university } = useSelector(state => state.auth)
   console.log("isloggedIn", isLoggedIn);
   const modalRef = useRef();
   const modalRefSignUp = useRef();

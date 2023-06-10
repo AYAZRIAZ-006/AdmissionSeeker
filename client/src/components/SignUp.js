@@ -163,7 +163,7 @@ const Signup = forwardRef((props, ref) => {
                     </Grid>
                 </form>
             </Paper>
-        </Modal >
+        </Modal>
     )
 })
 
