@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post("/Add",authMiddleware(University), AddDepartment);
 router.put("/",authMiddleware(University), updateDepartment);
-router.delete("/",authMiddleware(University), deleteDepartment);
+router.delete("/:_id",authMiddleware(University), deleteDepartment);
 router.get("/show",authMiddleware(University), displayDepartments);
 router.post("/conditionalShow", showDepartments);
 

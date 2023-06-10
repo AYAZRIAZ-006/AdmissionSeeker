@@ -1,8 +1,7 @@
 import NavBar from "../components/Navbar";
 import axios from "../config/axios";
-import { React, useState, useEffect, useRef, } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 import Table from 'react-bootstrap/Table';
-import { useNavigate } from 'react-router-dom';
 import Footer from "../components/footer";
 import { Link, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Department from "../components/department";
@@ -11,7 +10,7 @@ import Department from "../components/department";
 function Dashboard() {
     // const { auth }= useSelector(state=>state.auth);
   const modalRefDepartment = useRef();
-  const navigate = useNavigate();
+
     const [result, setResults] = useState([]);
     useEffect(() => {
         axios.get("http://localhost:5000/api/v1/department/show")
@@ -25,24 +24,6 @@ function Dashboard() {
             });
     }, []); // Empty dependency array means it will only run once on component mount
    const handleDeleteDepartment = async (id) => {
-    axios.delete(`department?_id=${id}`)
-    .then((res) => {
-        if (res.status === 200) {
-            console.log("sucess in dep", res);
-            // setResults(res);
-            alert("action done sucessfully");
-            navigate("/dashboard");
-        } else {
-            // setError((res.response).toString());
-            console.log("in else case error");
-        }
-    })
-    .catch(err => {
-        console.log("err", err.response.data.message);
-        // setError((err.response.data.message).toString());
-        // setOpen(true)
-
-    })
     console.log("dep delete successfull", id);
    }
    const handleUpdateDepartment = async (id) => {

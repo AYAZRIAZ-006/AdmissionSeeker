@@ -10,20 +10,20 @@ const deleteDepartment = async (req, res, next) => {
     const opts = { session, new: true };
     try {
         const { id } = req.university;
-        const { _id } = req.query;
-        if (!_id) throw new ApiError("Invalid Details", 400, "Please provide Id", true);
-        if (_id === "undefined") throw new ApiError("Invalid Details", 400, "Please provide Id", true);
+        const { _id } = req.params;
+        // if(!_id) throw new ApiError("Invalid Details", 400, "Please provide Id", true);
+        // if(_id === "undefined") throw new ApiError("Invalid Details", 400, "Please provide Id", true);
         const checkIfDepExist = await Department.findOne({ _id, unversityId: id });
         if (!checkIfDepExist) {
-            throw new ApiError("Invalid Details", 404, "Department does not Exist ", true);
+            throw new ApiError("Invalid Details", 404, "Department not Exist ", true);
         }
         const deleteDepartment = await Department.findByIdAndDelete({ _id }, opts);
         if (!deleteDepartment) {
-            throw new ApiError("Invalid Details", 400, "Department does not Deleted", true);
+            throw new ApiError("Invalid Details", 400, "Department not Deleted", true);
         }
         await session.commitTransaction();
         session.endSession();
-        return sendSuccessResponse(res, 200, true, "Department deleted successfully. ", null, deleteDepartment);
+        return sendSuccessResponse(res, 200, true, "Department delete successfully. ", null, deleteDepartment);
     } catch (error) {
         await session.abortTransaction();
         session.endSession();
