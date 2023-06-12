@@ -6,11 +6,10 @@ import { InputLabel, Select, MenuItem, FormControl, Alert } from '@mui/material'
 import BasicPopover from './popUp';
 import { useNavigate } from 'react-router-dom';
 
-const Department = forwardRef((props, ref) => {
-    console.log("in department ref", ref.current);
+const AddDepartment = forwardRef((props, ref) => {
+    console.log("in add department ref", ref.current);
     const [dep_Name, setDep_Name] = React.useState('');
     const [level, setLevel] = React.useState('');
-    // const [website, setWebsite] = React.useState('');
     const [applyMerit, setApplyMerit] = React.useState('');
     const [isAdmissionOpen, setIsAdmissionOpen] = React.useState('');
     const [openingDate, setOpeningDate] = React.useState('');
@@ -42,8 +41,7 @@ const Department = forwardRef((props, ref) => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const id = localStorage.getItem("depId");
-        axios.put(`department?_id=${id}`, {
+        axios.post("department/add", {
             dep_Name,
             semester,
             applyMerit,
@@ -54,11 +52,11 @@ const Department = forwardRef((props, ref) => {
             isAdmissionOpen,
         })
             .then((res) => {
-                if (res.status === 200) {
+                if (res.status === 201) {
                     console.log("sucess in dep", res);
                     setResults(res);
                     setOpenSuccess(true);
-                    alert("Department update sucessfully");
+                    alert("Department Add sucessfully");
                     navigate("/dashboard");
                         resetForm();
                     setOpenUpper(false);
@@ -74,13 +72,11 @@ const Department = forwardRef((props, ref) => {
                 setOpen(true)
 
             })
-            // .finally(()=>{
-            // })
     };
     const [openUpper, setOpenUpper] = React.useState(false);
     useImperativeHandle(ref, () => {
         return {
-            departmentOpen() {
+            AddDepartmentOpen() {
                 setOpenUpper(true);
             },
             // id:null,
@@ -97,7 +93,7 @@ const Department = forwardRef((props, ref) => {
                         <SchoolIcon />
                     </Avatar>
                     <h2 style={Style.headerStyle}>Department</h2>
-                    {openSuccess && <Alert>action done successfully</Alert>}
+                    {openSuccess && <Alert>Add Department successfully</Alert>}
                     {open && <Alert severity="error">{error}</Alert>}
                     <Typography variant='caption' gutterBottom>Please fill this form to update or add your department!</Typography>
                     <Button onClick={handleError}><BasicPopover error={error} open={open} /></Button>
@@ -191,4 +187,4 @@ const Style = {
     buttonCancel: { marginRight: "10px" }
 }
 
-export default Department;
+export default AddDepartment;
