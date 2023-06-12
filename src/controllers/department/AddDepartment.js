@@ -12,7 +12,7 @@ const AddDepartment = async (req, res, next) => {
     try {
         const { id } = req.university;
         const { dep_Name  } = req.body;
-        req.body.dep_Name = dep_Name.trim().toLowerCase();
+        // req.body.dep_Name = dep_Name.trim().toLowerCase();
         const errors = CheckIfAllRequiredFieldsArePresent(req.body, arrayOfRequiredFields); // returns an object with all the errors
         if (Object.keys(errors).length > 0) {
             return res.status(400).json({ status: false, message: `Please fill out the required fields : ${Object.keys(errors)} ` });
