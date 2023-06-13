@@ -26,10 +26,6 @@ const showDepartments = async (req, res, next) => {
         // const departments = await Department.find({$and : [{dep_Name :"electrical Engineering"},{applyMerit:{$gt: 40} } ]})
         const departments = await Department.find(query).select("universityId dep_Name level closingDate applyMerit isAdmissionOpen").populate("universityId");
         const departmentsAll = await Department.find(query2).select("universityId dep_Name level closingDate applyMerit isAdmissionOpen").populate("universityId");
-        // console.log("A departments",departments)
-        // console.log("length of all ", departmentsAll.length);
-        // const uniqueDepartments = departmentsAll.filter(department => !departments.some(d => d._id.equals(department._id)));
-        // console.log("length of uniq ", uniqueDepartments.length);
         if (departments.length < 1) {
             const departments = [{
                 _id: "no data",

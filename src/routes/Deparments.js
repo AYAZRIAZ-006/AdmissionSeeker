@@ -6,9 +6,9 @@ import showDepartments from "../utils/showDepartments.js";
 
 const router = express.Router();
 
-router.post("/Add",authMiddleware(University), AddDepartment);
-router.put("/:_id",authMiddleware(University), updateDepartment);
-router.delete("/:_id",authMiddleware(University), deleteDepartment);
+router.post("/add",authMiddleware(University), AddDepartment);
+router.put("/",authMiddleware(University), updateDepartment);
+router.delete("/",authMiddleware(University), deleteDepartment);
 router.get("/show",authMiddleware(University), displayDepartments);
 router.post("/conditionalShow", showDepartments);
 

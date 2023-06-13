@@ -1,13 +1,17 @@
 import NavBar from "../components/Navbar";
 import axios from "../config/axios";
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef, } from 'react';
 import Table from 'react-bootstrap/Table';
+import { useNavigate } from 'react-router-dom';
 import Footer from "../components/footer";
 import { Link, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import Department from "../components/department";
 // import dotenv from "dotenv"
 
 function Dashboard() {
     // const { auth }= useSelector(state=>state.auth);
+  const modalRefDepartment = useRef();
+  const navigate = useNavigate();
     const [result, setResults] = useState([]);
     useEffect(() => {
         axios.get("http://localhost:5000/api/v1/department/show")
@@ -20,7 +24,33 @@ function Dashboard() {
                 setResults(data.data.results);
             });
     }, []); // Empty dependency array means it will only run once on component mount
+   const handleDeleteDepartment = async (id) => {
+    axios.delete(`department?_id=${id}`)
+    .then((res) => {
+        if (res.status === 200) {
+            console.log("sucess in dep", res);
+            // setResults(res);
+            alert("action done sucessfully");
+            navigate("/dashboard");
+        } else {
+            // setError((res.response).toString());
+            console.log("in else case error");
+        }
+    })
+    .catch(err => {
+        console.log("err", err.response.data.message);
+        // setError((err.response.data.message).toString());
+        // setOpen(true)
 
+    })
+    console.log("dep delete successfull", id);
+   }
+   const handleUpdateDepartment = async (id) => {
+    console.log("dep delete successfull", id);
+    localStorage.setItem("depId", id);
+    // modalRefDepartment.current.id= id;
+    modalRefDepartment.current.departmentOpen();
+   }
     return (
         <>
             <div style={{ height: "750px" }}>
@@ -37,25 +67,39 @@ function Dashboard() {
                 </p>
                 <div style={{ background: "white", padding: "10px 20px" }}>
 
-                    <div style={{ width: "80%" }}>
+                    <div style={{ width: "100%" }}>
                         {/* <BasicTable dep_Name={"department Name"} _id={"_id"} applyMerit={"applyMerit"} universityId={"universityId"} /> */}
                         <TableContainer component={Paper} size="small" alignitems={"center"} width={"50%"}>
                             <Table className={"table"} aria-label="simple table" size={"small"} stickyHeader={true} >
                                 <TableHead>
                                     <TableRow>
                                         <TableCell align="right">department</TableCell>
+                                        <TableCell align="right">semester</TableCell>
+                                        <TableCell align="right">fee</TableCell>
                                         <TableCell align="right">applyMerit</TableCell>
                                         <TableCell align="right">Level</TableCell>
+                                        <TableCell align="right">openingDate</TableCell>
                                         <TableCell align="right">closingDate</TableCell>
+                                        <TableCell align="right">Delete</TableCell>
+                                        <TableCell align="right">update</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {result.map((row) => (
                                         <TableRow key={row._id}>
                                             <TableCell align="right">{row.dep_Name}</TableCell>
+                                            <TableCell align="right">{row.semester}</TableCell>
+                                            <TableCell align="right">{row.fee}</TableCell>
                                             <TableCell align="right">{row.applyMerit}</TableCell>
                                             <TableCell align="right">{row.level}</TableCell>
+                                            <TableCell align="right">{row.openingDate}</TableCell>
                                             <TableCell align="right">{row.closingDate}</TableCell>
+                                            <TableCell align="right">
+                                            <button style={{ backgroundColor: "#d11a2a", color: "white" }} onClick={() => handleDeleteDepartment(row._id)}>Delete</button>
+                                            </TableCell>
+                                            <TableCell align="right">
+                                            <button style={{ backgroundColor: "#FFE569", color: "black" }} onClick={() => handleUpdateDepartment(row._id)}>Update</button>
+                                            </TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -65,6 +109,7 @@ function Dashboard() {
 
                 </div>
             </div>
+            <Department ref={modalRefDepartment} />
             <Footer />
         </>
     )

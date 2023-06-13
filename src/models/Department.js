@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const DepartmentSchema = mongoose.Schema(
   {
-    dep_Id: { type: String, required: true },
+    // dep_Id: { type: String, required: true },
     dep_Name: { type: String, required: true },
-    deciplineType: { type: Array, required: true },
+    // deciplineType: { type: Array, required: true },
     level: {
       type: String,
       enum: ['bachelor', 'master', 'phd', 'mphil', 'diploma'],
