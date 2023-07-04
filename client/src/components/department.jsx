@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle, useEffect } from 'react';
 import { Paper, Avatar, Grid, Typography, TextField, Button, Modal, Box } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import { InputLabel, Select, MenuItem, FormControl, Alert } from '@mui/material';
@@ -7,9 +7,11 @@ import BasicPopover from './popUp';
 import { useNavigate } from 'react-router-dom';
 
 const Department = forwardRef((props, ref) => {
-    console.log("in department ref", ref.current);
-    const [dep_Name, setDep_Name] = React.useState('');
-    const [level, setLevel] = React.useState('');
+    // console.log("in department ref", ref.current);
+    // const rowData = JSON.parse(localStorage.getItem("rowData"));
+    const [dep_Name, setDep_Name] = React.useState();
+    const [id, setId] = React.useState();
+    const [level, setLevel] = React.useState();
     // const [website, setWebsite] = React.useState('');
     const [applyMerit, setApplyMerit] = React.useState('');
     const [isAdmissionOpen, setIsAdmissionOpen] = React.useState('');
@@ -31,7 +33,10 @@ const Department = forwardRef((props, ref) => {
         setClosingDate('');
         setSemester('');
         setFee('');
+        setId('');
       };
+     
+      
     const handleError = (event) => {
         if (open) {
             setOpen(false)
@@ -42,7 +47,7 @@ const Department = forwardRef((props, ref) => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const id = localStorage.getItem("depId");
+        const rowData = JSON.parse(localStorage.getItem("rowData"));
         axios.put(`department?_id=${id}`, {
             dep_Name,
             semester,
@@ -74,8 +79,9 @@ const Department = forwardRef((props, ref) => {
                 setOpen(true)
 
             })
-            // .finally(()=>{
-            // })
+            .finally(()=>{
+                localStorage.removeItem("rowData");
+            })
     };
     const [openUpper, setOpenUpper] = React.useState(false);
     useImperativeHandle(ref, () => {
@@ -86,6 +92,23 @@ const Department = forwardRef((props, ref) => {
             // id:null,
         }
     })
+
+    useEffect(() => {
+        const rowData = JSON.parse(localStorage.getItem('rowData'));
+        if (rowData) {
+            setId(rowData._id);
+          setDep_Name(rowData.dep_Name);
+          setLevel(rowData.level);
+          setApplyMerit(rowData.applyMerit);
+          setFee(rowData.fee);
+        //   setIsAdmissionOpen(rowData.isAdmissionOpen);
+          setSemester(rowData.semester);
+          setClosingDate(rowData.closingDate);
+          setOpeningDate(rowData.openingDate);
+        }
+      }, [openUpper]);
+
+
     return (
         <Modal
             open={openUpper}
@@ -162,10 +185,10 @@ const Department = forwardRef((props, ref) => {
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={12}>
-                            <TextField fullWidth value={openingDate} size="small" onChange={(e) => setOpeningDate(e.target.value)} label='OpeningDate' placeholder="Opening Date DD-MM-YYYY" required />
+                            <TextField fullWidth type="date" value={openingDate} size="small" onChange={(e) => setOpeningDate(e.target.value)} required />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={12}>
-                            <TextField fullWidth value={closingDate} size="small" onChange={(e) => setClosingDate(e.target.value)} label='ClosingDate' placeholder="Closing Date DD-MM-YYYY" required />
+                            <TextField fullWidth type="date" value={closingDate} size="small" onChange={(e) => setClosingDate(e.target.value)} required />
                         </Grid>
 
                         <Grid item xs={12} sm={12} md={12} lg={12}>

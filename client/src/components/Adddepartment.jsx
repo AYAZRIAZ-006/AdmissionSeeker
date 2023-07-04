@@ -95,7 +95,7 @@ const AddDepartment = forwardRef((props, ref) => {
                     <h2 style={Style.headerStyle}>Department</h2>
                     {openSuccess && <Alert>Add Department successfully</Alert>}
                     {open && <Alert severity="error">{error}</Alert>}
-                    <Typography variant='caption' gutterBottom>Please fill this form to update or add your department!</Typography>
+                    <Typography variant='caption' gutterBottom>Please fill this form to add your department!</Typography>
                     <Button onClick={handleError}><BasicPopover error={error} open={open} /></Button>
                 </Grid>
                 <form onSubmit={handleSubmit} style={Style.form}>
@@ -158,10 +158,10 @@ const AddDepartment = forwardRef((props, ref) => {
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={12}>
-                            <TextField fullWidth value={openingDate} size="small" onChange={(e) => setOpeningDate(e.target.value)} label='OpeningDate' placeholder="Opening Date DD-MM-YYYY" required />
+                            <TextField fullWidth type="date" value={openingDate} size="small" onChange={(e) => setOpeningDate(e.target.value)}  required />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={12}>
-                            <TextField fullWidth value={closingDate} size="small" onChange={(e) => setClosingDate(e.target.value)} label='ClosingDate' placeholder="Closing Date DD-MM-YYYY" required />
+                            <TextField fullWidth type="date" value={closingDate} size="small" onChange={(e) => setClosingDate(e.target.value)}  required />
                         </Grid>
 
                         <Grid item xs={12} sm={12} md={12} lg={12}>

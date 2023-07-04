@@ -13,7 +13,7 @@ import AddDepartment from './Adddepartment';
 function NavBar() {
 
   const { isLoggedIn, university } = useSelector(state => state.auth)
-  console.log("isloggedIn", isLoggedIn);
+  console.log("isloggedIn abvcjcbj", isLoggedIn);
   const modalRef = useRef();
   const modalRefSignUp = useRef();
   const modalRefAddDepartment = useRef();
