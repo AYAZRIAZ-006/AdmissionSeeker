@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Logout } from '../redux/slices/auth';
 import AddDepartment from './Adddepartment';
+import UpdateField from './updateField';
 
 function NavBar() {
 
@@ -17,6 +18,7 @@ function NavBar() {
   const modalRef = useRef();
   const modalRefSignUp = useRef();
   const modalRefAddDepartment = useRef();
+  const modalRefUpdateField = useRef();
   const navigate=useNavigate()
   const dispatch=useDispatch();
 
@@ -40,6 +42,9 @@ function NavBar() {
   const addDepartment =async ()=>{
     modalRefAddDepartment.current.AddDepartmentOpen();
   }
+  const update =async ()=>{
+    modalRefUpdateField.current.updateFieldOpen();
+  }
   return (
     <Navbar bg="info" expand="lg" style={{padding:"10px 20px 10px 20px"}}>
       <Container fluid>
@@ -62,6 +67,7 @@ function NavBar() {
             isLoggedIn ?
               <>
                 <Button variant="outline-success" onClick={addDepartment}>Add Department</Button>
+                <Button variant="outline-success" onClick={update}>Update Field</Button>
                 <Button variant="outline-success" onClick={LogoutUser}>Logout</Button>
               </> :
               <>
@@ -72,6 +78,7 @@ function NavBar() {
           <Login ref={modalRef} />
           <Signup ref={modalRefSignUp} />
           <AddDepartment ref={modalRefAddDepartment} />
+          <UpdateField ref={modalRefUpdateField} />
 
         </Navbar.Collapse>
       </Container>
