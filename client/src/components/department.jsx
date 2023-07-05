@@ -7,12 +7,9 @@ import BasicPopover from './popUp';
 import { useNavigate } from 'react-router-dom';
 
 const Department = forwardRef((props, ref) => {
-    // console.log("in department ref", ref.current);
-    // const rowData = JSON.parse(localStorage.getItem("rowData"));
     const [dep_Name, setDep_Name] = React.useState();
     const [id, setId] = React.useState();
     const [level, setLevel] = React.useState();
-    // const [website, setWebsite] = React.useState('');
     const [applyMerit, setApplyMerit] = React.useState('');
     const [isAdmissionOpen, setIsAdmissionOpen] = React.useState('');
     const [openingDate, setOpeningDate] = React.useState('');
@@ -37,17 +34,17 @@ const Department = forwardRef((props, ref) => {
       };
      
       
-    const handleError = (event) => {
+    const handleError = () => {
         if (open) {
             setOpen(false)
         }
     }
-    const onCloseModal = (event) => {
+    const onCloseModal = () => {
         setOpenUpper(false)
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const rowData = JSON.parse(localStorage.getItem("rowData"));
+        // const rowData = JSON.parse(localStorage.getItem("rowData"));
         axios.put(`department?_id=${id}`, {
             dep_Name,
             semester,
@@ -101,7 +98,7 @@ const Department = forwardRef((props, ref) => {
           setLevel(rowData.level);
           setApplyMerit(rowData.applyMerit);
           setFee(rowData.fee);
-        //   setIsAdmissionOpen(rowData.isAdmissionOpen);
+          setIsAdmissionOpen(rowData.isAdmissionOpen);
           setSemester(rowData.semester);
           setClosingDate(rowData.closingDate);
           setOpeningDate(rowData.openingDate);
@@ -122,7 +119,7 @@ const Department = forwardRef((props, ref) => {
                     <h2 style={Style.headerStyle}>Department</h2>
                     {openSuccess && <Alert>action done successfully</Alert>}
                     {open && <Alert severity="error">{error}</Alert>}
-                    <Typography variant='caption' gutterBottom>Please fill this form to update or add your department!</Typography>
+                    <Typography variant='caption' gutterBottom>Please fill this form to update department!</Typography>
                     <Button onClick={handleError}><BasicPopover error={error} open={open} /></Button>
                 </Grid>
                 <form onSubmit={handleSubmit} style={Style.form}>

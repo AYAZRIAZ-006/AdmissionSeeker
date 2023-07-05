@@ -73,16 +73,16 @@ const Login = forwardRef((props, ref) => {
                             <Button color="warning" variant="contained" onClick={onCloseModal} style={{marginRight:"10px"}}>Cancel</Button>
                             <Button type='submit' color='primary' variant="contained" >Sign in</Button>
                         </Box>
-                        <Typography >
+                        {/* <Typography >
                             <Link href="#" >
                                 Forgot password ?
                             </Link>
                         </Typography>
                         <Typography > Do you have an account ?
-                            <Link href="#" >
+                            <Link href="/signup" >
                                 Sign Up
                             </Link>
-                        </Typography>
+                        </Typography> */}
                     </form>
                 </Paper>
             </Grid>

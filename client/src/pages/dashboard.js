@@ -24,6 +24,7 @@ function Dashboard() {
                 setResults(data.data.results);
             });
     }, []); // Empty dependency array means it will only run once on component mount
+    // if i ass result variable in [] then its render automatically continuosly 
     const handleDeleteDepartment = async (id) => {
         const confirmed = window.confirm('Are you sure you want to delete this department?');
         if (confirmed) {
@@ -54,7 +55,7 @@ function Dashboard() {
     }
     const handleUpdateDepartment = async (row) => {
 
-        console.log("dep delete successfull", row);
+        console.log("dep update successfull", row);
         localStorage.setItem("rowData", JSON.stringify(row));
         // modalRefDepartment.current.id= id;
         modalRefDepartment.current.departmentOpen();
