@@ -1,8 +1,8 @@
 import axios from "axios"
 import { React, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import BasicTable from "./table";
-import { Box, Button, FormControl, Link, FormHelperText, TextField, Grid, InputLabel, MenuItem, Paper, Select, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+// import BasicTable from "./table";
+import { Box, Button, FormControl, Link, TextField, Grid, InputLabel, MenuItem, Paper, Select, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 // import dotenv from "dotenv"
 
 
@@ -13,23 +13,23 @@ import { Box, Button, FormControl, Link, FormHelperText, TextField, Grid, InputL
 //   },
 // });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+// function createData(name, calories, fat, carbs, protein) {
+//   return { name, calories, fat, carbs, protein };
+// }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+// const rows = [
+//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+//   createData('Eclair', 262, 16.0, 24, 6.0),
+//   createData('Cupcake', 305, 3.7, 67, 4.3),
+//   createData('Gingerbread', 356, 16.0, 49, 3.9),
+// ];
 
 // console.log(process.env.CONDITIONAL_DEP_URL);
 function MiddleSection() {
   const [department, setDepartment] = useState('');
   const [level, setlevel] = useState('');
-  var [deciplineType, setDeciplineType] = useState('');
+  // var [deciplineType, setDeciplineType] = useState('');
   const [applyMerit, setapplyMerit] = useState('');
   const [result, setResults] = useState([]);
   const [resultAll, setAllResults] = useState([]);
@@ -37,10 +37,6 @@ function MiddleSection() {
   let data = [];
   const handleSubmit = async (event) => {
     event.preventDefault(); 
-    // if (applyMerit < 1 || applyMerit >100 ) {
-    //   setResults("Merit can not be less then 1 and greater than 100");
-    //   setResults("Merit can not be less then 1 and greater than 100");
-    // }
     data = await axios.post("http://localhost:5000/api/v1/Department/ConditionalShow", {
       dep_Name: department,
       deciplineType:"Engineering",
@@ -189,10 +185,10 @@ function MiddleSection() {
             <TableHead>
               <TableRow>
                 <TableCell>University</TableCell>
-                <TableCell align="right">department</TableCell>
-                <TableCell align="right">applyMerit</TableCell>
+                <TableCell align="right">Department</TableCell>
+                <TableCell align="right">ApplyMerit</TableCell>
                 <TableCell align="right">Level</TableCell>
-                <TableCell align="right">closingDate</TableCell>
+                <TableCell align="right">Closing Date</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

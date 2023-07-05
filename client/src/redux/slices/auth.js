@@ -10,7 +10,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
                 'Content-Type': 'application/json'
             }
         });
-        // console.log("i am in login 2");
+        console.log("i am in login 2");
         console.log({data})
         return data;
     } catch (err) {
@@ -106,15 +106,15 @@ const authSlice = createSlice({
             state.loading = true;
         },
         [login.fulfilled]: (state, action) => {
-            // console.log("login sucess", action.payload);
+            console.log("login sucess", action.payload);
             state.loading = false;
             state.university = action.payload.results.university;
             state.isLoggedIn = true;
             //set user to localStorege
             const { authToken, university } = action.payload.results;
-            // console.log("toms", authToken);
+            console.log("toms", JSON.stringify(authToken));
             localStorage.setItem('university', JSON.stringify(university));
-            localStorage.setItem('authToken', JSON.stringify(authToken));
+            localStorage.setItem('authToken', authToken);
         },
         [login.rejected]: (state, action) => {
             const { error, status } = action.payload;
