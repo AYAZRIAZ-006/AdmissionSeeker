@@ -1,13 +1,10 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-// import axios from 'axios';
-import { Grid, Paper, Avatar, TextField, Button, Typography, Link, Modal, Alert, Box } from '@mui/material'
+import { Grid, Paper, Avatar, TextField, Button, Modal, Alert, Box } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import BasicPopover from './popUp';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slices/auth';
-
-
 
 const Login = forwardRef((props, ref) => {
     const dispatch = useDispatch();
@@ -38,7 +35,10 @@ const Login = forwardRef((props, ref) => {
             password,
         }))
         closeModal();
-        navigate("/dashboard");
+        alert("You are login SucessFully");
+        setTimeout(() => {
+            navigate("/dashboard");
+        }, 700);
 
     };
 
@@ -73,16 +73,6 @@ const Login = forwardRef((props, ref) => {
                             <Button color="warning" variant="contained" onClick={onCloseModal} style={{marginRight:"10px"}}>Cancel</Button>
                             <Button type='submit' color='primary' variant="contained" >Sign in</Button>
                         </Box>
-                        {/* <Typography >
-                            <Link href="#" >
-                                Forgot password ?
-                            </Link>
-                        </Typography>
-                        <Typography > Do you have an account ?
-                            <Link href="/signup" >
-                                Sign Up
-                            </Link>
-                        </Typography> */}
                     </form>
                 </Paper>
             </Grid>

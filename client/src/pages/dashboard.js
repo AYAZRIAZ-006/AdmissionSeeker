@@ -62,7 +62,7 @@ function Dashboard() {
     }
     return (
         <>
-            <div style={{ height: "750px" }}>
+            <div style={{ height: "100%" }}>
 
                 <NavBar />
                 {/* {isLoggedIn ? <ProtectedRoute component={MiddleSection} /> : <div>
