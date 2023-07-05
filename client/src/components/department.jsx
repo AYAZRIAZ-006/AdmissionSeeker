@@ -114,7 +114,7 @@ const Department = forwardRef((props, ref) => {
                     <Avatar style={Style.avatarStyle}>
                         <SchoolIcon />
                     </Avatar>
-                    <h2 style={Style.headerStyle}>Department</h2>
+                    <h2 style={Style.headerStyle}>Update Department</h2>
                     {openSuccess && <Alert>action done successfully</Alert>}
                     {open && <Alert severity="error">{error}</Alert>}
                     <Typography variant='caption' gutterBottom>Please fill this form to update department!</Typography>
