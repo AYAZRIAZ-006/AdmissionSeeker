@@ -44,7 +44,6 @@ const Department = forwardRef((props, ref) => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // const rowData = JSON.parse(localStorage.getItem("rowData"));
         axios.put(`department?_id=${id}`, {
             dep_Name,
             semester,
@@ -86,7 +85,6 @@ const Department = forwardRef((props, ref) => {
             departmentOpen() {
                 setOpenUpper(true);
             },
-            // id:null,
         }
     })
 

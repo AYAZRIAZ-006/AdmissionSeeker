@@ -12,7 +12,7 @@ import AddDepartment from './Adddepartment';
 
 function NavBar() {
 
-  const { isLoggedIn, university } = useSelector(state => state.auth)
+  const { isLoggedIn } = useSelector(state => state.auth)
   console.log("isloggedIn abvcjcbj", isLoggedIn);
   const modalRef = useRef();
   const modalRefSignUp = useRef();
@@ -33,6 +33,7 @@ function NavBar() {
   }
   const LogoutUser=()=>{
     localStorage.removeItem("university");
+    localStorage.removeItem("authToken");
     dispatch(Logout());
     navigate("/");
   }
