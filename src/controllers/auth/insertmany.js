@@ -115,7 +115,7 @@ const insertMany = async (req, res, next) => {
             [
                 {
                   dep_Id: "UOSphdcivil123",
-                  dep_Name: "Civil Engineering",
+                  dep_Name: "civil engineering",
                   deciplineType: ["civil engineering", "Infrastructure Engineering", "Structural Engineering", "Environmental Engineering", "Geotechnical Engineering"],
                   level: "phd",
                   semester: 6,
@@ -141,7 +141,7 @@ const insertMany = async (req, res, next) => {
                 },
                 {
                   dep_Id: "UOSenvi657",
-                  dep_Name: "BBA",
+                  dep_Name: "bba",
                   deciplineType: ["business administration", "accounting and finance", "marketing", "entrepreneurship"],
                   level: "bachelor",
                   semester: 8,
@@ -154,7 +154,7 @@ const insertMany = async (req, res, next) => {
                 },
                 {
                   dep_Id: "UOSenvi789",
-                  dep_Name: "Environmental Sciences",
+                  dep_Name: "environmental sciences",
                   deciplineType: ["Atmospheric Sciences", "Biodiversity and Conservation", "Environmental Chemistry", "Environmental Microbiology", "Environmental Planning and Management"],
                   level: "bachelor",
                   semester: 8,
@@ -167,7 +167,7 @@ const insertMany = async (req, res, next) => {
                 },
                 {
                     dep_Id: "UOSmenvi789",
-                    dep_Name: "Environmental Sciences",
+                    dep_Name: "environmental sciences",
                     deciplineType: ["Atmospheric Sciences", "Biodiversity and Conservation", "Environmental Chemistry", "Environmental Microbiology", "Environmental Planning and Management"],
                     level: "mphil",
                     semester: 4,
@@ -180,7 +180,7 @@ const insertMany = async (req, res, next) => {
                   },
                   {
                     dep_Id: "UOSedu456",
-                    dep_Name: "Education",
+                    dep_Name: "education",
                     deciplineType: ["Elementary Education", "Secondary Education", "Special Education", "Curriculum and Instruction", "Educational Administration"],
                     level: "master",
                     semester: 4,
@@ -193,7 +193,7 @@ const insertMany = async (req, res, next) => {
                   },
                   {
                     dep_Id: "UOSmchem012",
-                    dep_Name: "Chemistry",
+                    dep_Name: "chemistry",
                     deciplineType: ["Analytical Chemistry", "Organic Chemistry", "Inorganic Chemistry", "Physical Chemistry", "Biochemistry"],
                     level: "master",
                     semester: 4,
@@ -206,7 +206,7 @@ const insertMany = async (req, res, next) => {
                   },
                   {
                     dep_Id: "UOSmbus567",
-                    dep_Name: "Business Administration",
+                    dep_Name: "business administration",
                     deciplineType: ["Accounting", "Finance", "Marketing", "Human Resource Management", "Entrepreneurship"],
                     level: "mphil",
                     semester: 4,
@@ -219,7 +219,7 @@ const insertMany = async (req, res, next) => {
                   },
                   {
                     dep_Id: "UOSphdelec123",
-                    dep_Name: "Electrical Engineering",
+                    dep_Name: "electrical engineering",
                     deciplineType: ["Power Engineering", "Control Engineering", "Telecommunication Engineering", "Electronics Engineering"],
                     level: "master",
                     semester: 4,
@@ -245,7 +245,7 @@ const insertMany = async (req, res, next) => {
                   },
                   {
                     dep_Id: "UOSphdmech231",
-                    dep_Name: "Mechanical Engineering",
+                    dep_Name: "mechanical engineering",
                     deciplineType: ["Thermodynamics", "Mechatronics", "Robotics", "Automobile Engineering"],
                     level: "mphil",
                     semester: 4,
@@ -258,8 +258,8 @@ const insertMany = async (req, res, next) => {
                   },
                   {
                     dep_Id: "UOSMcivil123",
-                    dep_Name: "Civil Engineering",
-                    deciplineType: ["Civil Engineering", "Infrastructure Engineering", "Structural Engineering", "Environmental Engineering", "Geotechnical Engineering"],
+                    dep_Name: "civil engineering",
+                    deciplineType: ["civil engineering", "Infrastructure Engineering", "Structural Engineering", "Environmental Engineering", "Geotechnical Engineering"],
                     level: "master",
                     semester: 4,
                     applyMerit: 3.1,

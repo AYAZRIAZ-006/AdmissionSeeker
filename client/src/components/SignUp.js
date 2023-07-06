@@ -94,9 +94,6 @@ const Signup = forwardRef((props, ref) => {
                         <Grid item xs={12} sm={12} md={12} lg={12}>
                             <TextField fullWidth value={universityName} size="small" onChange={(e) => setUniversityName(e.target.value)} label='university Name' placeholder="Enter your university name" required />
                         </Grid>
-
-
-
                         <Grid item xs={12} sm={12} md={12} lg={12}>
                             <TextField fullWidth value={email} size="small" onChange={(e) => setEmail(e.target.value)} label='email' placeholder="Enter your email" required />
                         </Grid>
@@ -143,7 +140,7 @@ const Signup = forwardRef((props, ref) => {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        
+
                         <Grid item xs={6} sm={6} md={6} lg={6}>
                             <TextField size='small' fullWidth value={website} onChange={(e) => setWebsite(e.target.value)} label='website' placeholder="https://www.website.edu.pk/" required />
                         </Grid>
