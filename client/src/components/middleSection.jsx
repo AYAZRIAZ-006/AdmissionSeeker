@@ -66,8 +66,8 @@ function MiddleSection() {
   return (
     <div style={{ background: "white", padding: "10px 20px", height:"90%" }}>
     <div>
-      <h1>Well Come to Admission Seeker</h1>
-      <h6>if you select <strong>Master, PHD or M-phil</strong>Enter your CGPA</h6>
+      <h1>Welcome to Admission-Seeker</h1>
+      <h6>if you select <strong> Master, PHD or M-phil</strong> Enter your CGPA</h6>
       {/* <p><strong>
       Welcome to our innovative website designed to simplify the process of applying to universities.
        Our platform provides a smart algorithm that matches students with universities based on their academic qualifications,

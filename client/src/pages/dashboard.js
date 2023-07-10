@@ -71,7 +71,7 @@ function Dashboard() {
                 <p>Futhermore please signup or signin to continue</p>
             </div>} */}
                 <h1 style={{ color: "green" }}>Well Come to your Dashboard page</h1>
-                <p style={{ color: "greenyellow", margin: "5px" }}><strong>help the students to chose your university for themby adding more details about your university
+                <p style={{ color: "greenyellow", margin: "5px" }}><strong>help the students to chose your university for them by adding more details about your university
                 </strong>
                 </p>
                 <div style={{ background: "white", padding: "10px 20px" }}>
