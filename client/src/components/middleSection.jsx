@@ -147,14 +147,14 @@ function MiddleSection() {
                   <em>Select Type</em>
                 </MenuItem>
                 <MenuItem value={"computer science"}>Computer Science</MenuItem>
-                <MenuItem value={"Electrical Engineering"}>Electrical Engineering</MenuItem>
-                <MenuItem value={"Medical Science"}>Medical Science</MenuItem>
-                <MenuItem value={"Computer Science & IT"}>Computer Science & IT </MenuItem>
-                <MenuItem value={"Civil Engineering"}>Civil Engineering</MenuItem>
-                <MenuItem value={"BBA"}>BBA</MenuItem>
-                <MenuItem value={"Mechanical Engineering"}>Mechanical Engineering</MenuItem>
-                <MenuItem value={"Environmental Sciences"}>Environmental Sciences</MenuItem>
-                <MenuItem value={"Chemistry"}>Chemistry</MenuItem>
+                <MenuItem value={"electrical engineering"}>Electrical Engineering</MenuItem>
+                <MenuItem value={"medical science"}>Medical Science</MenuItem>
+                <MenuItem value={"computer science & IT"}>Computer Science & IT </MenuItem>
+                <MenuItem value={"civil engineering"}>Civil Engineering</MenuItem>
+                <MenuItem value={"bba"}>BBA</MenuItem>
+                <MenuItem value={"mechanical engineering"}>Mechanical Engineering</MenuItem>
+                <MenuItem value={"environmental sciences"}>Environmental Sciences</MenuItem>
+                <MenuItem value={"chemistry"}>Chemistry</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -168,6 +168,7 @@ function MiddleSection() {
               label="Merit"
               Value={applyMerit}
               onChange={(e) => setapplyMerit(e.target.value)}
+              max={level !== "bachelor" ? 4 : 0}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={2} lg={2} style={{ justifyContent: 'left', display: "flex", alignItems: "center" }}>
