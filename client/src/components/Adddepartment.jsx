@@ -36,6 +36,25 @@ const AddDepartment = forwardRef((props, ref) => {
             setOpen(false)
         }
     }
+    const levelHandle = (event) => {
+        setLevel(event.target.value);
+        if ( event.target.value === "bachelor" || event.target.value === "phd") {
+            setSemester(8);
+        }
+        else {
+            setSemester(4);
+        }
+    }
+    const handleMerit = event => {
+        if (level !== "bachelor" ) {
+        const value = Math.max(0, Math.min(4, Number(event.target.value)));
+        setApplyMerit(value);
+    } else {
+        const value = Math.max(0, Math.min(100, Number(event.target.value)));
+        setApplyMerit(value);
+    }
+      };
+    
     const onCloseModal = (event) => {
         setOpenUpper(false)
     }
@@ -113,7 +132,7 @@ const AddDepartment = forwardRef((props, ref) => {
                                     value={level}
                                     label="Level"
                                     required
-                                    onChange={(e) => setLevel(e.target.value)} >
+                                    onChange={levelHandle} >
                                     <MenuItem value={"bachelor"}>Bachelor</MenuItem>
                                     <MenuItem value={"master"}>Master</MenuItem>
                                     <MenuItem value={"phd"}>Phd</MenuItem>
@@ -122,7 +141,7 @@ const AddDepartment = forwardRef((props, ref) => {
                             </FormControl>
                             </Grid>
                         <Grid item xs={6} sm={6} md={6} lg={6}>
-                            <TextField type='number' fullWidth value={applyMerit} size="small" onChange={(e) => setApplyMerit(parseFloat(e.target.value))} label='ApplyMerit' placeholder="Enter Apply Merit" required />
+                            <TextField type='number' fullWidth value={applyMerit} size="small" onChange={handleMerit} label='ApplyMerit' placeholder="Enter Apply Merit" required />
                         </Grid>
                         <Grid item xs={6} sm={6} md={6} lg={6}>
                             <TextField type='number' size='small' fullWidth value={fee} onChange={(e) => setFee(parseFloat(e.target.value))} label='Fee' placeholder="Enter fee" required />
