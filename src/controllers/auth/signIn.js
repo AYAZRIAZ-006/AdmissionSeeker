@@ -15,11 +15,12 @@ const SignIn = async (req, res, next) => {
         }
         const university = await University.findOne({ email: email.toLowerCase() })
         if (!university) {
-            res.status(400).json({ status: 400, message: "Invalid Credentials university not found" })
+           return  res.status(400).json({ status: 400, message: "Invalid Credentials university not found" })
         }
         const universityVerified = await university.bcryptComparePassword(password);
         if (!universityVerified) {
-            throw new ApiError("Invalid Cradentials", 400, "Incorrect email or Password", true);
+            // throw new ApiError("Invalid Cradentials", 400, "Incorrect email or Password", true);
+           return  res.status(400).json({ status: 400, message: "Invalid Credentials university not found" })
         }
         const accessToken = jwt.sign({ id: university._id }, process.env.secretketjwt)
         // const { Password, ...others } = university._doc

@@ -23,7 +23,7 @@ function Dashboard() {
                 console.log("error", data);
                 setResults(data.data.results);
             });
-    }, []); // Empty dependency array means it will only run once on component mount
+    }, [result]); // Empty dependency array means it will only run once on component mount
     // if i ass result variable in [] then its render automatically continuosly 
     const handleDeleteDepartment = async (id) => {
         const confirmed = window.confirm('Are you sure you want to delete this department?');
