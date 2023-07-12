@@ -22,7 +22,7 @@ function University() {
 
     return (
         <>
-            <div style={{height:"750px"}}>
+            <div style={{height:"100%"}}>
             <NavBar />
                 <h1>Well Come to Admission Seeker</h1>
                 {/* <p><strong>

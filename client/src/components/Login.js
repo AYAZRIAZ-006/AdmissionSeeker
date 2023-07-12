@@ -38,7 +38,7 @@ const Login = forwardRef((props, ref) => {
         alert("You are login SucessFully");
         setTimeout(() => {
             navigate("/dashboard");
-        }, 700);
+        }, 9000);
 
     };
 

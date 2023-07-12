@@ -24,13 +24,13 @@ const SignUp = async (req, res, next) => {
         if (AllArray.length > 0) {
             throw new ApiError("Invalid details", 400, `${AllArray} `, true);
         }
-        const Query = { $and: [{ email }, { campusID }] };
+        const Query = { email };
         const university = await University.find(Query).select("_id email campusID");
-        const currentUserDetails = { email: email.toLowerCase(), campusID };
+        const currentUserDetails = { email: email.toLowerCase() };
         const isUnique = unique(university, currentUserDetails);
 
         if (isUnique !== true) {
-            throw new ApiError("Invalid Details", 400, `email or campusId already exist `, true);
+            throw new ApiError("Invalid Details", 400, `email already exist `, true);
         }
         const newUniversity = new University(req.body);
         if (!newUniversity) {
